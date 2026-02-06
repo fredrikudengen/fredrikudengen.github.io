@@ -1,44 +1,100 @@
 <!DOCTYPE html>
 <html lang="no">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prosjekter</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prosjekter · Fredrik Udengen</title>
+  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="Prosjekter av Fredrik Udengen – Java, Python, backend, data og spill." />
 </head>
 <body>
+  <header class="site-header">
+    <div class="topbar">
+      <a class="brand" href="index.html">Fredrik Udengen</a>
+      <nav class="nav">
+        <a href="projects.html">Prosjekter</a>
+        <a href="index.html">Om meg</a>
+        <a href="https://www.linkedin.com/in/fredrik-udengen-87272a143/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:fredrikudengen@proton.me">Kontakt</a>
+      </nav>
+    </div>
 
-  <header>
-    <h1>Prosjekter</h1>
-    <nav>
-      <a href="index.html">Hjem</a>
-    </nav>
+    <section class="page-hero">
+      <h1>Prosjekter</h1>
+      <p class="subtitle">
+        Ting jeg har bygget for å lære, teste ideer og bli bedre på backend, data og AI i praksis.
+      </p>
+    </section>
   </header>
 
-  <main>
-    <section>
-      <h2>Roguelike spill i Java</h2>
-      <p>
-        Ferdig utviklet spill utviklet i Java med fokus på objektorientert design,
-        spill-logikk og strukturert kode.
-      </p>
-      <ul>
-        <li>Java</li>
-        <li>Objektorientert programmering</li>
-        <li>Spill-logikk</li>
-      </ul>
-      <a href="https://github.com/fredrikudengen/Resten-Ringer">Se kode på GitHub</a>
+  <main class="content">
+    <section class="project-grid">
+      <!-- Prosjekt 1 -->
+      <article class="project-card">
+        <div class="project-header">
+          <h2>Roguelike spill i Java</h2>
+          <span class="status done">Ferdig</span>
+        </div>
+
+        <p>
+          Et ferdig utviklet spill i Java med fokus på objektorientert design, spill-logikk og ryddig struktur.
+        </p>
+
+        <div class="chips" aria-label="Teknologier">
+          <span class="chip">Java</span>
+          <span class="chip">OOP</span>
+          <span class="chip">Spill-logikk</span>
+          <span class="chip">Struktur</span>
+        </div>
+
+        <div class="project-actions">
+          <a class="button" href="https://github.com/fredrikudengen/Resten-Ringer" target="_blank" rel="noopener">
+            Se kode på GitHub
+          </a>
+        </div>
+      </article>
+
+      <!-- Prosjekt 2 -->
+      <article class="project-card">
+        <div class="project-header">
+          <h2>Dungeon-crawler i Python</h2>
+          <span class="status wip">Pågående</span>
+        </div>
+
+        <p>
+          Pågående spillprosjekt i Python hvor jeg bygger videre på ideene fra Java-prosjektet og eksperimenterer
+          med enklere “AI-agenter” (atferd, pathfinding og tilstandsmaskiner).
+        </p>
+
+        <div class="chips" aria-label="Teknologier">
+          <span class="chip">Python</span>
+          <span class="chip">Agenter</span>
+          <span class="chip">AI</span>
+          <span class="chip">Spill-loop</span>
+        </div>
+
+        <div class="project-actions">
+          <a class="button ghost" href="https://github.com/fredrikudengen/placeholder" target="_blank" rel="noopener">
+            Se kode på GitHub
+          </a>
+        </div>
+      </article>
     </section>
-      <h2>Dungeon-crawler spill i Python (pågående)</h2>
-      <p>
-        Pågående spill-prosjekt i Python med fokus på å bygge videre på Java-spillet og implementere intelligente agenter.
+
+    <section class="card">
+      <h2>På vei inn</h2>
+      <p class="subtitle">
+        Neste på lista: små prosjekter innen data/SQL og en enkel backend-tjeneste (API + database) som kan deployes.
       </p>
-      <ul>
-        <li>Python</li>
-        <li>Intelligente agenter</li>
-      </ul>
-      <a href="https://github.com/fredrikudengen/placeholder">Se kode på GitHub</a>
     </section>
   </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Fredrik Udengen</p>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
