@@ -22,14 +22,46 @@
     <section class="page-hero">
       <h1>Prosjekter</h1>
       <p class="subtitle">
-        Ting jeg har bygget for å lære, teste ideer og bli bedre på backend, data og AI i praksis.
+        Ting jeg har bygget for å lære, teste ideer og bli bedre på backend/frontend, data og AI i praksis.
       </p>
     </section>
   </header>
 
   <main class="content">
     <section class="project-grid">
-            <!-- Prosjekt 3 -->
+
+      <!-- StudyMap -->
+      <article class="project-card">
+        <img class="project-thumb" src="img/studymap.png" alt="Skjermbilde fra StudyMap" loading="lazy">
+        <div class="project-header">
+          <h2>StudyMap</h2>
+          <span class="status done">Ferdig</span>
+        </div>
+
+        <p>
+          Webapp som hjelper studenter å kartlegge hva de kan og ikke kan innen et emne. Adaptive tester
+          generert av Claude, visuell kunnskapsgraf med avhengigheter mellom temaer, spaced repetition og
+          fritekstsvar vurdert av LLM. Bygget med agentic development via Claude Code.
+        </p>
+
+        <div class="chips" aria-label="Teknologier">
+          <span class="chip">React</span>
+          <span class="chip">FastAPI</span>
+          <span class="chip">PostgreSQL</span>
+          <span class="chip">Docker</span>
+          <span class="chip">Tailwind</span>
+          <span class="chip">Claude Code</span>
+          <span class="chip">React Flow</span>
+        </div>
+
+        <div class="project-actions">
+          <a class="button" href="https://github.com/fredrikudengen/StudyMap" target="_blank" rel="noopener">
+            Se kode på GitHub
+          </a>
+        </div>
+      </article>
+
+      <!-- Strømpris -->
       <article class="project-card">
         <img class="project-thumb" src="img/Strompris.png" alt="Skjermbilde fra Strømpris" loading="lazy">
         <div class="project-header">
@@ -60,7 +92,35 @@
           </a>
         </div>
       </article>
-      <!-- Prosjekt 1 -->
+
+      <!-- Resten Ringer Python -->
+      <article class="project-card">
+        <img class="project-thumb" src="img/placeholder.png" alt="Illustrasjon for pågående Python-prosjekt" loading="lazy">
+        <div class="project-header">
+          <h2>Resten Ringer 2 (Python)</h2>
+          <span class="status wip">Pågående</span>
+        </div>
+
+        <p>
+          Pågående spillprosjekt i Python hvor jeg bygger videre på ideene fra Java-prosjektet og eksperimenterer
+          med enklere "AI-agenter" (atferd, pathfinding og tilstandsmaskiner).
+        </p>
+
+        <div class="chips" aria-label="Teknologier">
+          <span class="chip">Python</span>
+          <span class="chip">Agenter</span>
+          <span class="chip">AI</span>
+          <span class="chip">Spill-loop</span>
+        </div>
+
+        <div class="project-actions">
+          <a class="button ghost" href="https://github.com/fredrikudengen/placeholder" target="_blank" rel="noopener">
+            Se kode på GitHub
+          </a>
+        </div>
+      </article>
+
+      <!-- Resten Ringer Java -->
       <article class="project-card">
         <img class="project-thumb" src="img/resten-ringer.png" alt="Skjermbilde fra Resten Ringer" loading="lazy">
         <div class="project-header">
@@ -85,32 +145,7 @@
           </a>
         </div>
       </article>
-      <!-- Prosjekt 2 -->
-      <article class="project-card">
-        <img class="project-thumb" src="img/placeholder.png" alt="Illustrasjon for pågående Python-prosjekt" loading="lazy">
-        <div class="project-header">
-          <h2>Resten Ringer 2 (Python)</h2>
-          <span class="status wip">Pågående</span>
-        </div>
 
-        <p>
-          Pågående spillprosjekt i Python hvor jeg bygger videre på ideene fra Java-prosjektet og eksperimenterer
-          med enklere “AI-agenter” (atferd, pathfinding og tilstandsmaskiner).
-        </p>
-
-        <div class="chips" aria-label="Teknologier">
-          <span class="chip">Python</span>
-          <span class="chip">Agenter</span>
-          <span class="chip">AI</span>
-          <span class="chip">Spill-loop</span>
-        </div>
-
-        <div class="project-actions">
-          <a class="button ghost" href="https://github.com/fredrikudengen/placeholder" target="_blank" rel="noopener">
-            Se kode på GitHub
-          </a>
-        </div>
-      </article>
     </section>
 
     <section class="card">
