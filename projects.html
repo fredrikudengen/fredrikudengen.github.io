@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Prosjekter · Fredrik Udengen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <meta name="description" content="Prosjekter av Fredrik Udengen – Java, Python, backend, data og spill." />
 </head>
@@ -19,7 +22,7 @@
       </nav>
     </div>
 
-    <section class="page-hero">
+    <section class="page-hero reveal">
       <h1>Prosjekter</h1>
       <p class="subtitle">
         Ting jeg har bygget for å lære, teste ideer og bli bedre på backend/frontend, data og AI i praksis.
@@ -27,11 +30,11 @@
     </section>
   </header>
 
-  <main class="content">
+  <main class="content wide">
     <section class="project-grid">
 
       <!-- StudieKart -->
-      <article class="project-card">
+      <article class="project-card reveal">
         <img class="project-thumb" src="img/studymap.png" alt="Skjermbilde fra StudieKart" loading="lazy">
         <div class="project-header">
           <h2>StudieKart</h2>
@@ -66,7 +69,7 @@
       </article>
 
       <!-- Strømpris -->
-      <article class="project-card">
+      <article class="project-card reveal">
         <img class="project-thumb" src="img/Strompris.png" alt="Skjermbilde fra Strømpris" loading="lazy">
         <div class="project-header">
           <h2>Norsk strømprisvisualiserer</h2>
@@ -98,7 +101,7 @@
       </article>
 
       <!-- INFO284 ML Group Exam -->
-      <article class="project-card">
+      <article class="project-card reveal">
         <img class="project-thumb" src="img/INFO284.png" alt="Illustrasjon for INFO284 maskinlæringsprosjekt" loading="lazy">
         <div class="project-header">
           <h2>Sentimentanalyse &amp; AI-kunstklassifisering</h2>
@@ -128,7 +131,7 @@
       </article>
 
       <!-- Resten Ringer Python -->
-      <article class="project-card">
+      <article class="project-card reveal">
         <img class="project-thumb" src="img/placeholder.png" alt="Illustrasjon for pågående Python-prosjekt" loading="lazy">
         <div class="project-header">
           <h2>Resten Ringer 2 (Python)</h2>
@@ -149,14 +152,14 @@
         </div>
 
         <div class="project-actions">
-          <a class="button" href="https://github.com/fredrikudengen/placeholder" target="_blank" rel="noopener">
+          <a class="button" href="https://github.com/fredrikudengen/Resten-Ringer-2" target="_blank" rel="noopener">
             Se kode på GitHub
           </a>
         </div>
       </article>
 
       <!-- Resten Ringer Java -->
-      <article class="project-card">
+      <article class="project-card reveal">
         <img class="project-thumb" src="img/resten-ringer.png" alt="Skjermbilde fra Resten Ringer" loading="lazy">
         <div class="project-header">
           <h2>Resten Ringer (Java)</h2>
@@ -183,7 +186,7 @@
 
     </section>
 
-    <section class="card">
+    <section class="card reveal">
       <h2>Neste på lista</h2>
       <p class="subtitle">
         I planleggingsfasen...
@@ -198,5 +201,6 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
+  <script src="script.js"></script>
 </body>
 </html>
