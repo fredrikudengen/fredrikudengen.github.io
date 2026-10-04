@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p /home/gromit/code_projects/fredrikudengen.github.io/resources/books /home/gromit/code_projects/fredrikudengen.github.io/resources/movies /home/gromit/code_projects/fredrikudengen.github.io/boker /home/gromit/code_projects/fredrikudengen.github.io/filmer)",
+      "Bash(cp \"/home/gromit/Nextcloud/Notes/books/Sapiens_media/image1.jpg\" /home/gromit/code_projects/fredrikudengen.github.io/img/sapiens-1.jpg)"
+    ]
+  }
+}
