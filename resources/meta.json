@@ -1,0 +1,246 @@
+{
+  "books": {
+    "bhagavad-gita": {
+      "forfatter": "",
+      "aar": "",
+      "dato": ""
+    },
+    "du-ma-ikke-sove": {
+      "forfatter": "",
+      "aar": "",
+      "dato": ""
+    },
+    "its-ok-that-youre-not-ok": {
+      "forfatter": "",
+      "aar": "",
+      "dato": ""
+    },
+    "koke-bjorn": {
+      "forfatter": "",
+      "aar": "",
+      "dato": ""
+    },
+    "maus-i-og-ii": {
+      "forfatter": "",
+      "aar": "",
+      "dato": ""
+    },
+    "meditations": {
+      "forfatter": "",
+      "aar": "",
+      "dato": ""
+    },
+    "min-venn-har-blitt-dikter": {
+      "forfatter": "",
+      "aar": "",
+      "dato": ""
+    },
+    "sapiens": {
+      "forfatter": "",
+      "aar": "",
+      "dato": ""
+    },
+    "some-people-need-killing": {
+      "forfatter": "",
+      "aar": "",
+      "dato": ""
+    }
+  },
+  "movies": {
+    "affeksjonsverdi": {
+      "regissor": "",
+      "aar": "",
+      "dato": ""
+    },
+    "all-of-us-strangers": {
+      "regissor": "",
+      "aar": "",
+      "dato": ""
+    },
+    "all-the-beauty-and-the-bloodshed": {
+      "regissor": "",
+      "aar": "",
+      "dato": ""
+    },
+    "babygirl": {
+      "regissor": "",
+      "aar": "",
+      "dato": ""
+    },
+    "barry-lyndon": {
+      "regissor": "",
+      "aar": "",
+      "dato": ""
+    },
+    "birdman": {
+      "regissor": "",
+      "aar": "",
+      "dato": ""
+    },
+    "come-and-see": {
+      "regissor": "",
+      "aar": "",
+      "dato": ""
+    },
+    "drommer": {
+      "regissor": "",
+      "aar": "",
+      "dato": ""
+    },
+    "dune-2": {
+      "regissor": "",
+      "aar": "",
+      "dato": ""
+    },
+    "elephant-man": {
+      "regissor": "",
+      "aar": "",
+      "dato": ""
+    },
+    "eraserhead": {
+      "regissor": "",
+      "aar": "",
+      "dato": ""
+    },
+    "et-glass-til": {
+      "regissor": "",
+      "aar": "",
+      "dato": ""
+    },
+    "eyes-wide-shut": {
+      "regissor": "",
+      "aar": "",
+      "dato": ""
+    },
+    "fantastic-mr-fox": {
+      "regissor": "",
+      "aar": "",
+      "dato": ""
+    },
+    "fight-club": {
+      "regissor": "",
+      "aar": "",
+      "dato": ""
+    },
+    "good-will-hunting": {
+      "regissor": "",
+      "aar": "",
+      "dato": ""
+    },
+    "hostsonaten": {
+      "regissor": "",
+      "aar": "",
+      "dato": ""
+    },
+    "in-the-mood-for-love": {
+      "regissor": "",
+      "aar": "",
+      "dato": ""
+    },
+    "lego-batman": {
+      "regissor": "",
+      "aar": "",
+      "dato": ""
+    },
+    "magnolia": {
+      "regissor": "",
+      "aar": "",
+      "dato": ""
+    },
+    "memento": {
+      "regissor": "",
+      "aar": "",
+      "dato": ""
+    },
+    "mulholland-drive": {
+      "regissor": "",
+      "aar": "",
+      "dato": ""
+    },
+    "one-battle-after-another": {
+      "regissor": "",
+      "aar": "",
+      "dato": ""
+    },
+    "oslo-31-august": {
+      "regissor": "",
+      "aar": "",
+      "dato": ""
+    },
+    "paths-of-glory": {
+      "regissor": "",
+      "aar": "",
+      "dato": ""
+    },
+    "project-hail-mary": {
+      "regissor": "",
+      "aar": "",
+      "dato": ""
+    },
+    "quislings-siste-dager": {
+      "regissor": "",
+      "aar": "",
+      "dato": ""
+    },
+    "se7en": {
+      "regissor": "",
+      "aar": "",
+      "dato": ""
+    },
+    "sinners": {
+      "regissor": "",
+      "aar": "",
+      "dato": ""
+    },
+    "small-things-like-these": {
+      "regissor": "",
+      "aar": "",
+      "dato": ""
+    },
+    "sound-of-metal": {
+      "regissor": "",
+      "aar": "",
+      "dato": ""
+    },
+    "synecdoche-new-york": {
+      "regissor": "",
+      "aar": "",
+      "dato": ""
+    },
+    "the-brutalist": {
+      "regissor": "",
+      "aar": "",
+      "dato": ""
+    },
+    "the-cremator": {
+      "regissor": "",
+      "aar": "",
+      "dato": ""
+    },
+    "the-lego-batman-movie": {
+      "regissor": "",
+      "aar": "",
+      "dato": ""
+    },
+    "the-lobster": {
+      "regissor": "",
+      "aar": "",
+      "dato": ""
+    },
+    "the-substance": {
+      "regissor": "",
+      "aar": "",
+      "dato": ""
+    },
+    "whiplash": {
+      "regissor": "",
+      "aar": "",
+      "dato": ""
+    },
+    "yi-yi": {
+      "regissor": "",
+      "aar": "",
+      "dato": ""
+    }
+  }
+}

@@ -238,6 +238,11 @@ a { color: var(--accent); }
 
 .page-hero h1 { font-size: 2.1rem; margin: 0 0 8px; }
 
+.review-meta {
+  margin: 4px 0 0;
+}
+.review-meta:empty { margin: 0; }
+
 .content.wide {
   max-width: 980px;
 }

@@ -26,6 +26,7 @@
     <section class="page-hero reveal">
       <a class="breadcrumb" href="../filmer.html">&larr; Filmer</a>
       <h1>The Lobster</h1>
+      <div class="chips review-meta" id="review-meta" aria-label="Detaljer"></div>
     </section>
   </header>
 
@@ -50,6 +51,30 @@
         document.getElementById("review-body").innerHTML =
           "<p>Kunne ikke laste anmeldelsen.</p>";
       });
+
+    fetch("../resources/meta.json")
+      .then((r) => r.json())
+      .then((meta) => {
+        var entry = (meta["movies"] || {})["the-lobster"];
+        if (!entry) return;
+        var labels = {
+          forfatter: "Forfatter",
+          regissor: "Regissør",
+          aar: "År",
+          dato: "Lest/sett",
+        };
+        var order = ["forfatter", "regissor", "aar", "dato"];
+        var el = document.getElementById("review-meta");
+        order.forEach(function (key) {
+          var value = entry[key];
+          if (!value) return;
+          var span = document.createElement("span");
+          span.className = "chip";
+          span.textContent = (key === "aar" ? value : labels[key] + ": " + value);
+          el.appendChild(span);
+        });
+      })
+      .catch(function () {});
   </script>
   <script src="../script.js"></script>
 </body>
