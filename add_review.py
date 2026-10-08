@@ -185,57 +185,16 @@ REVIEW_PAGE = """<!DOCTYPE html>
 </html>
 """
 
-CARD_TEMPLATE = """      <article class="review-card reveal">
-        <h2>{title}</h2>
-        <a class="button ghost" href="{page_dir}/{slug}.html">Les anmeldelse &rarr;</a>
-      </article>"""
-
-
-def insert_card(listing_path, title, page_dir, slug):
-    with open(listing_path, encoding="utf-8") as f:
-        content = f.read()
-
-    new_card = CARD_TEMPLATE.format(title=title, page_dir=page_dir, slug=slug)
-
-    existing_titles = re.findall(r'<article class="review-card reveal">\s*<h2>(.*?)</h2>', content)
-    if title in existing_titles:
-        print(f"'{title}' finnes allerede i {listing_path}, lar listen være urørt.")
-        return
-
-    cards = re.findall(r'      <article class="review-card reveal">.*?</article>', content, re.DOTALL)
-    insert_pos = len(cards)
-    for i, card in enumerate(cards):
-        m = re.search(r"<h2>(.*?)</h2>", card)
-        existing_title = m.group(1) if m else ""
-        if title.lower() < existing_title.lower():
-            insert_pos = i
-            break
-
-    if cards:
-        if insert_pos == 0:
-            content = content.replace(cards[0], new_card + "\n" + cards[0], 1)
-        else:
-            anchor = cards[insert_pos - 1]
-            content = content.replace(anchor, anchor + "\n" + new_card, 1)
-    else:
-        content = content.replace(
-            '<section class="review-grid">',
-            '<section class="review-grid">\n' + new_card,
-            1,
-        )
-
-    with open(listing_path, "w", encoding="utf-8") as f:
-        f.write(content)
-
-
-def update_meta(meta_path, meta_key, meta_fields, slug):
+def update_meta(meta_path, meta_key, meta_fields, slug, title):
     with open(meta_path, encoding="utf-8") as f:
         meta = json.load(f)
     meta.setdefault(meta_key, {})
     if slug in meta[meta_key]:
         print(f"'{slug}' finnes allerede i meta.json, lar oppføringen være urørt.")
         return
-    meta[meta_key][slug] = {field: "" for field in meta_fields}
+    entry = {"title": title}
+    entry.update(dict.fromkeys(meta_fields, ""))
+    meta[meta_key][slug] = entry
     with open(meta_path, "w", encoding="utf-8") as f:
         json.dump(meta, f, ensure_ascii=False, indent=2)
         f.write("\n")
@@ -282,13 +241,10 @@ def main():
         f.write(page_html)
     print(f"Skrev {page_path}")
 
-    listing_path = os.path.join(SITE_ROOT, cfg["listing_file"])
-    insert_card(listing_path, title, cfg["page_dir"], slug)
-    print(f"Oppdaterte {listing_path}")
-
     meta_path = os.path.join(SITE_ROOT, "resources", "meta.json")
-    update_meta(meta_path, cfg["meta_key"], cfg["meta_fields"], slug)
+    update_meta(meta_path, cfg["meta_key"], cfg["meta_fields"], slug, title)
     print(f"Oppdaterte {meta_path}")
+    print(f"{cfg['listing_file']} henter listen direkte fra meta.json, ingen videre endring nødvendig der.")
 
     print(f"\nFerdig! Fyll gjerne inn {', '.join(cfg['meta_fields'])} for '{slug}' i resources/meta.json.")
 
