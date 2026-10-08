@@ -1,246 +1,161 @@
 {
   "books": {
     "bhagavad-gita": {
-      "forfatter": "",
-      "aar": "",
-      "dato": ""
+      "forfatter": "flere forfattere",
+      "aar": "200 fvt.",
+      "dato": "23.02.2025"
     },
     "du-ma-ikke-sove": {
-      "forfatter": "",
-      "aar": "",
-      "dato": ""
-    },
-    "its-ok-that-youre-not-ok": {
-      "forfatter": "",
-      "aar": "",
-      "dato": ""
+      "forfatter": "Håvard Friis Nilsen",
+      "aar": "2024",
+      "dato": "31.01.2026"
     },
     "koke-bjorn": {
-      "forfatter": "",
-      "aar": "",
-      "dato": ""
+      "forfatter": "Mikael Niemi",
+      "aar": "2020",
+      "dato": "02.10.2024"
     },
     "maus-i-og-ii": {
-      "forfatter": "",
-      "aar": "",
-      "dato": ""
+      "forfatter": "Art Spiegelman",
+      "aar": "1991",
+      "dato": "11.03.2024"
     },
     "meditations": {
-      "forfatter": "",
-      "aar": "",
-      "dato": ""
-    },
-    "min-venn-har-blitt-dikter": {
-      "forfatter": "",
-      "aar": "",
-      "dato": ""
+      "forfatter": "Marcus Aurelius",
+      "aar": "180 evt.",
+      "dato": "22.06.2024"
     },
     "sapiens": {
-      "forfatter": "",
-      "aar": "",
-      "dato": ""
+      "forfatter": "Yuval Noah Harari",
+      "aar": "2011",
+      "dato": "29.02.2026"
     },
     "some-people-need-killing": {
-      "forfatter": "",
-      "aar": "",
-      "dato": ""
+      "forfatter": "Patricia Evangelista",
+      "aar": "2023",
+      "dato": "11.09.2025"
     }
   },
   "movies": {
     "affeksjonsverdi": {
-      "regissor": "",
-      "aar": "",
-      "dato": ""
-    },
-    "all-of-us-strangers": {
-      "regissor": "",
-      "aar": "",
-      "dato": ""
-    },
-    "all-the-beauty-and-the-bloodshed": {
-      "regissor": "",
-      "aar": "",
-      "dato": ""
-    },
-    "babygirl": {
-      "regissor": "",
-      "aar": "",
-      "dato": ""
-    },
-    "barry-lyndon": {
-      "regissor": "",
-      "aar": "",
-      "dato": ""
+      "regissor": "Joachim Trier",
+      "aar": "2025",
+      "dato": "10.09.2025"
     },
     "birdman": {
-      "regissor": "",
-      "aar": "",
-      "dato": ""
+      "regissor": "Alejandro Iñárritu",
+      "aar": "2014",
+      "dato": "25.10.2024"
     },
     "come-and-see": {
-      "regissor": "",
-      "aar": "",
-      "dato": ""
-    },
-    "drommer": {
-      "regissor": "",
-      "aar": "",
-      "dato": ""
+      "regissor": "Elem Klimov",
+      "aar": "1985",
+      "dato": "06.09.2021"
     },
     "dune-2": {
-      "regissor": "",
-      "aar": "",
-      "dato": ""
+      "regissor": "Denis Villeneuve",
+      "aar": "2024",
+      "dato": "17.02.2024"
     },
     "elephant-man": {
-      "regissor": "",
-      "aar": "",
-      "dato": ""
-    },
-    "eraserhead": {
-      "regissor": "",
-      "aar": "",
-      "dato": ""
+      "regissor": "David Lynch",
+      "aar": "1980",
+      "dato": "02.04.2024"
     },
     "et-glass-til": {
-      "regissor": "",
-      "aar": "",
-      "dato": ""
-    },
-    "eyes-wide-shut": {
-      "regissor": "",
-      "aar": "",
-      "dato": ""
-    },
-    "fantastic-mr-fox": {
-      "regissor": "",
-      "aar": "",
-      "dato": ""
+      "regissor": "Thomas Vinterberg",
+      "aar": "2020",
+      "dato": "20.04.2022"
     },
     "fight-club": {
-      "regissor": "",
-      "aar": "",
-      "dato": ""
-    },
-    "good-will-hunting": {
-      "regissor": "",
-      "aar": "",
-      "dato": ""
-    },
+      "regissor": "David Fincher",
+      "aar": "1999",
+      "dato": "03.09.2022"
+    },  
     "hostsonaten": {
-      "regissor": "",
-      "aar": "",
-      "dato": ""
-    },
-    "in-the-mood-for-love": {
-      "regissor": "",
-      "aar": "",
-      "dato": ""
-    },
-    "lego-batman": {
-      "regissor": "",
-      "aar": "",
-      "dato": ""
+      "regissor": "Ingmar Bergman",
+      "aar": "1978",
+      "dato": "17.02.2025"
     },
     "magnolia": {
-      "regissor": "",
-      "aar": "",
-      "dato": ""
+      "regissor": "Paul Thomas Anderson",
+      "aar": "1999",
+      "dato": "25.09.2024"
     },
     "memento": {
-      "regissor": "",
-      "aar": "",
-      "dato": ""
+      "regissor": "Christopher Nolan",
+      "aar": "2000",
+      "dato": "17.04.2024"
     },
     "mulholland-drive": {
-      "regissor": "",
-      "aar": "",
-      "dato": ""
+      "regissor": "David Lynch",
+      "aar": "2001",
+      "dato": "17.01.2025"
     },
     "one-battle-after-another": {
-      "regissor": "",
-      "aar": "",
-      "dato": ""
-    },
-    "oslo-31-august": {
-      "regissor": "",
-      "aar": "",
-      "dato": ""
-    },
-    "paths-of-glory": {
-      "regissor": "",
-      "aar": "",
-      "dato": ""
+      "regissor": "Paul Thomas Anderson",
+      "aar": "2025",
+      "dato": "28.09.2025"
     },
     "project-hail-mary": {
-      "regissor": "",
-      "aar": "",
-      "dato": ""
+      "regissor": "Phil Lord & Christopher Miller",
+      "aar": "2026",
+      "dato": "22.03.2026"
     },
     "quislings-siste-dager": {
-      "regissor": "",
-      "aar": "",
-      "dato": ""
+      "regissor": "Erik Poppe",
+      "aar": "2024",
+      "dato": "02.09.2024"
     },
     "se7en": {
-      "regissor": "",
-      "aar": "",
-      "dato": ""
-    },
-    "sinners": {
-      "regissor": "",
-      "aar": "",
-      "dato": ""
-    },
-    "small-things-like-these": {
-      "regissor": "",
-      "aar": "",
-      "dato": ""
-    },
-    "sound-of-metal": {
-      "regissor": "",
-      "aar": "",
-      "dato": ""
+      "regissor": "David Fincher",
+      "aar": "1995",
+      "dato": "08.02.2024"
     },
     "synecdoche-new-york": {
-      "regissor": "",
-      "aar": "",
-      "dato": ""
+      "regissor": "Charlie Kaufman",
+      "aar": "2008",
+      "dato": "13.12.2024"
     },
     "the-brutalist": {
-      "regissor": "",
-      "aar": "",
-      "dato": ""
+      "regissor": "Brady Corbet",
+      "aar": "2024",
+      "dato": "06.03.2025"
     },
     "the-cremator": {
-      "regissor": "",
-      "aar": "",
-      "dato": ""
+      "regissor": "Juraj Herz",
+      "aar": "1969",
+      "dato": "22.11.2023"
     },
     "the-lego-batman-movie": {
-      "regissor": "",
-      "aar": "",
-      "dato": ""
+      "regissor": "Chris McKay",
+      "aar": "2017",
+      "dato": "18.02.2024"
     },
     "the-lobster": {
-      "regissor": "",
-      "aar": "",
-      "dato": ""
+      "regissor": "Yorgos Lanthimos",
+      "aar": "2015",
+      "dato": "01.04.2024"
     },
     "the-substance": {
-      "regissor": "",
-      "aar": "",
-      "dato": ""
+      "regissor": "Coralie Fargeat",
+      "aar": "2024",
+      "dato": "21.09.2025"
     },
     "whiplash": {
-      "regissor": "",
-      "aar": "",
-      "dato": ""
+      "regissor": "Damien Chazelle",
+      "aar": "2014",
+      "dato": "08.01.2024"
     },
     "yi-yi": {
-      "regissor": "",
-      "aar": "",
-      "dato": ""
+      "regissor": "Edward Yang",
+      "aar": "2000",
+      "dato": "11.10.2024"
+    },
+    "digger": {
+      "regissor": "Alejandro Iñárritu",
+      "aar": "2026",
+      "dato": "04.10.2026"
     }
   }
 }
