@@ -50,27 +50,29 @@
         });
         slugs.forEach(function (slug) {
           var entry = books[slug];
-          var article = document.createElement("article");
-          article.className = "review-card";
+          var card = document.createElement("a");
+          card.className = "review-card";
+          card.href = "boker/" + slug + ".html";
 
           var h2 = document.createElement("h2");
           h2.textContent = entry.title;
-          article.appendChild(h2);
+          card.appendChild(h2);
 
-          if (entry.forfatter || entry.aar) {
+          if (entry.forfatter) {
             var p = document.createElement("p");
             p.className = "review-card-meta";
-            p.textContent = [entry.forfatter, entry.aar].filter(Boolean).join(" · ");
-            article.appendChild(p);
+            p.textContent = entry.forfatter;
+            card.appendChild(p);
           }
 
-          var a = document.createElement("a");
-          a.className = "button ghost";
-          a.href = "boker/" + slug + ".html";
-          a.innerHTML = "Les anmeldelse &rarr;";
-          article.appendChild(a);
+          if (entry.dato) {
+            var pDato = document.createElement("p");
+            pDato.className = "review-card-date";
+            pDato.textContent = "Skrevet " + entry.dato;
+            card.appendChild(pDato);
+          }
 
-          grid.appendChild(article);
+          grid.appendChild(card);
         });
       })
       .catch(function () {
