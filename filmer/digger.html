@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fantastic Mr. Fox · Fredrik Udengen</title>
+  <title>Digger · Fredrik Udengen</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../style.css" />
-  <meta name="description" content="Anmeldelse av Fantastic Mr. Fox · Fredrik Udengen" />
+  <meta name="description" content="Anmeldelse av Digger · Fredrik Udengen" />
 </head>
 <body>
   <header class="site-header">
@@ -25,7 +25,7 @@
 
     <section class="page-hero reveal">
       <a class="breadcrumb" href="../filmer.html">&larr; Filmer</a>
-      <h1>Fantastic Mr. Fox</h1>
+      <h1>Digger</h1>
       <div class="chips review-meta" id="review-meta" aria-label="Detaljer"></div>
     </section>
   </header>
@@ -42,7 +42,7 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
-    fetch("../resources/movies/fantastic-mr-fox.html")
+    fetch("../resources/movies/digger.html")
       .then((r) => r.text())
       .then((htmlText) => {
         document.getElementById("review-body").innerHTML = htmlText;
@@ -55,7 +55,7 @@
     fetch("../resources/meta.json")
       .then((r) => r.json())
       .then((meta) => {
-        var entry = (meta["movies"] || {})["fantastic-mr-fox"];
+        var entry = (meta["movies"] || {})["digger"];
         if (!entry) return;
         var labels = {
           forfatter: "Forfatter",
