@@ -43,37 +43,16 @@ function handleMediaError(el) {
   el.parentNode.replaceChild(box, el);
 }
 
-// Pause loopende videoer utenfor viewport, og respekter prefers-reduced-motion
+// Respekter prefers-reduced-motion: ikke autoplay loopende videoer
 (function () {
   var videos = document.querySelectorAll("video[autoplay]");
   if (!videos.length) return;
 
-  var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-  if (reducedMotion) {
-    videos.forEach(function (video) {
-      video.removeAttribute("autoplay");
-      video.pause();
-      video.load();
-    });
-    return;
-  }
-
-  if (!("IntersectionObserver" in window)) return;
-
-  var observer = new IntersectionObserver(
-    function (entries) {
-      entries.forEach(function (entry) {
-        var video = entry.target;
-        if (entry.isIntersecting) {
-          video.play().catch(function () {});
-        } else {
-          video.pause();
-        }
-      });
-    },
-    { threshold: 0.25 }
-  );
-
-  videos.forEach(function (video) { observer.observe(video); });
+  videos.forEach(function (video) {
+    video.removeAttribute("autoplay");
+    video.pause();
+    video.load();
+  });
 })();
