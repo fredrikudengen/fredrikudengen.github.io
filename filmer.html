@@ -15,9 +15,9 @@
     <div class="topbar">
       <a class="brand" href="index.html">Fredrik Udengen</a>
       <nav class="nav">
+        <a href="index.html">Om meg</a>
         <a href="projects.html">Prosjekter</a>
         <a href="boker.html">Bøker</a>
-        <a href="filmer.html">Filmer</a>
         <a href="https://www.linkedin.com/in/fredrik-udengen-87272a143/" target="_blank" rel="noopener">LinkedIn</a>
         <a href="mailto:fredrikudengen@proton.me">Kontakt</a>
       </nav>
@@ -25,7 +25,7 @@
 
     <section class="page-hero reveal">
       <h1>Filmer</h1>
-      <p class="subtitle">Noen filmanmeldelser jeg har skrevet, ord for ord slik jeg noterte dem.</p>
+      <p class="subtitle">Noen film-"anmeldelser" jeg har skrevet.</p>
     </section>
   </header>
 
@@ -40,13 +40,24 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
+    function dateKey(entry) {
+      if (!entry.dato) return -Infinity;
+      var parts = entry.dato.split(".");
+      if (parts.length !== 3) return -Infinity;
+      var d = parseInt(parts[0], 10);
+      var m = parseInt(parts[1], 10);
+      var y = parseInt(parts[2], 10);
+      if (!d || !m || !y) return -Infinity;
+      return y * 10000 + m * 100 + d;
+    }
+
     fetch("resources/meta.json")
       .then((r) => r.json())
       .then((meta) => {
         var movies = meta.movies || {};
         var grid = document.getElementById("review-grid");
         var slugs = Object.keys(movies).sort(function (a, b) {
-          return movies[a].title.localeCompare(movies[b].title, "no");
+          return dateKey(movies[b]) - dateKey(movies[a]);
         });
         slugs.forEach(function (slug) {
           var entry = movies[slug];

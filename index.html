@@ -22,66 +22,199 @@
         <a href="mailto:fredrikudengen@proton.me">Kontakt</a>
       </nav>
     </div>
+  </header>
 
-    <section class="hero">
-      <div class="hero-text reveal">
+  <main class="content wide">
+
+    <!-- 1. HERO: bilde venstre, tekst høyre -->
+    <section class="split hero-split reveal">
+      <figure class="split-media">
+        <img
+          class="split-photo hero-photo"
+          src="img/pekka.JPG"
+          alt="[TODO: alt-tekst – Fredrik foran P.E.K.K.A.-statuen utenfor Supercell i Helsinki]"
+          width="900"
+          height="1200"
+          onerror="handleMediaError(this)"
+        />
+        <figcaption>[TODO: bildetekst]</figcaption>
+      </figure>
+      <div class="split-text">
         <h1>Fredrik Udengen</h1>
         <p class="subtitle">Master i programvareutvikling (UiB/HVL)</p>
-
+        <!-- TODO: kort introduksjon, inkl. "hva jeg holder på med nå".
+             Hint: helseinformatikk, algoritmer og Java REST API via studiet;
+             planlegger masteroppgaven; jobber videre med Resten Ringer 2. -->
+        <p>[TODO: kort introduksjon – hva jeg holder på med nå]</p>
         <div class="cta">
           <a class="button" href="projects.html">Se prosjekter</a>
           <a class="button ghost" href="mailto:fredrikudengen@proton.me">Ta kontakt</a>
         </div>
       </div>
-
-      <img
-        class="avatar"
-        src="img/fredrik.png"
-        alt="Portrett av Fredrik Udengen"
-        width="140"
-        height="140"
-        loading="lazy"
-      />
-    </section>
-  </header>
-
-  <main class="content">
-    <section class="card reveal">
-      <h2>Om meg</h2>
-      <p>
-        Jeg tar for tiden en master i Programvareutvikling som er et samarbeid mellom Universitetet i Bergen 
-        og Høyskolen på Vestlandet. Jeg er ferdig med masteren sommeren 2028. Jeg har en bachelor-grad i Kognitiv 
-        vitenskap fra UiB. Faglig er jeg særlig interessert i backend-utvikling, data og anvendt AI.
-      </p>
-      <p>
-        Jeg er særlig interessert i backend-utvikling, data og anvendt AI. Jeg jobber hovedsakelig med Java og Python, 
-        i tillegg har jeg erfaring med algoritmer, datastrukturer og maskinlæring. Jeg har også tatt kognisjons-relaterte 
-        emner som lingvistikk, biologisk psykologi og logikk. Denne kombinasjonen av både informatikk og kognitiv vitenskap 
-        gjør at jeg er opptatt av alt fra systemdesign og struktur til brukeropplevelse og workflow.
-      </p>
-      <p>
-        Jeg bruker AI aktivt i utviklingsarbeidet mitt, som en partner for å tenke gjennom problemer, skrive bedre kode
-        og lære raskere. Men for meg har det alltid vært viktig at jeg forstår og kan stå inne for det jeg leverer.
-      </p>
     </section>
 
-    <section class="card reveal">
-      <h2>Hva jeg jobber med nå</h2>
-      <p>
-        Dette semesteret så tar jeg emnene: helseinformatikk, avanserte programvareteknologier og algoritmer. Gjennom 
-        helseinformatikk så lærer jeg hvordan utvikling består av et helt økosystem med ting man må forholde seg til:
-        regulering, brukere, andre teknologier osv. I programvareteknologier lærer jeg om hvordan man håndterer dette
-        økosystemet, hvordan man bygger programvare som skal tåle å bli satt ut i produksjon. Algoritmer lærer meg å 
-        gjøre alt dette så effektivt som mulig. Jobber man effektivt kan vi alle ta helg litt før ;)
-      </p>
-      <p>
-        Parallelt så bygger jeg egne fullstack-prosjekter for å bli bedre på backend-utvikling og systemdesign. Jeg 
-        prøver å anvende AI og maskinlæring der jeg kan. Gjerne
-        <a href="https://github.com/fredrikudengen/Resten-Ringer-2" target="_blank" rel="noopener">test spillet jeg lager her</a>.
-      </p>
+    <!-- 2. PROSJEKTER: video | tekst | bilder (tre kolonner på desktop) -->
+    <section class="tri reveal">
+      <figure class="tri-media">
+        <!-- TODO: video ikke konvertert ennå, se ffmpeg-forslag i README/samtale -->
+        <video
+          class="media-video"
+          width="800"
+          height="450"
+          autoplay
+          loop
+          muted
+          playsinline
+          preload="metadata"
+          poster="img/rr2-poster.jpg"
+          aria-label="Resten Ringer 2 – spillklipp"
+          onerror="handleMediaError(this)"
+        >
+          <source src="img/rr2.webm" type="video/webm" />
+          <source src="img/rr2.mp4" type="video/mp4" />
+        </video>
+        <figcaption>[TODO: bildetekst – klipp fra Resten Ringer 2]</figcaption>
+      </figure>
+
+      <div class="tri-text">
+        <h2>Prosjekter</h2>
+        <!-- TODO: avsnitt om Resten Ringer 2 -->
+        <p>[TODO: om Resten Ringer 2]</p>
+        <!-- TODO: avsnitt om StudieKart -->
+        <p>[TODO: om StudieKart]</p>
+        <p class="links-row">
+          <a href="https://github.com/fredrikudengen/Resten-Ringer-2" target="_blank" rel="noopener">test spillet</a>
+          · <a href="https://studiekart.onrender.com/" target="_blank" rel="noopener">StudieKart (live)</a>
+          · <a href="https://github.com/fredrikudengen/StudieKart" target="_blank" rel="noopener">StudieKart (kode)</a>
+          · <a href="projects.html">Alle prosjekter</a>
+        </p>
+      </div>
+
+      <figure class="tri-media tri-media--stack">
+        <!-- Midlertidig: bruker img/studymap.png til kunnskapsgrafen er klar som img/studiekart-graf.png -->
+        <img
+          class="project-thumb"
+          src="img/studymap.png"
+          alt="[TODO: alt – kunnskapsgrafen i StudieKart]"
+          width="500"
+          height="339"
+          loading="lazy"
+          onerror="handleMediaError(this)"
+        />
+        <img
+          class="project-thumb"
+          src="img/studiekart-emner.png"
+          alt="[TODO: alt – emneoversikt i StudieKart]"
+          width="500"
+          height="339"
+          loading="lazy"
+          onerror="handleMediaError(this)"
+        />
+        <figcaption>[TODO: felles bildetekst for begge StudieKart-skjermbildene]</figcaption>
+      </figure>
     </section>
+
+    <!-- 3. KUNST/KULTUR: tekst venstre, bilde høyre -->
+    <section class="split split--reverse reveal">
+      <div class="split-text">
+        <h2>Kunst og kultur</h2>
+        <!-- TODO: kort avsnitt om kunst/kultur-interesse -->
+        <p>[TODO: avsnitt om kunst og kultur]</p>
+        <p class="links-row">
+          <a href="boker.html">Bøker</a> · <a href="filmer.html">Filmer</a>
+        </p>
+      </div>
+      <figure class="split-media">
+        <img
+          class="split-photo"
+          src="img/fountain.JPG"
+          alt="[TODO: alt-tekst – ved Duchamps «Fountain» på Tate Modern]"
+          width="900"
+          height="1200"
+          loading="lazy"
+          onerror="handleMediaError(this)"
+        />
+        <figcaption>[TODO: bildetekst]</figcaption>
+      </figure>
+    </section>
+
+    <!-- 4. FONTENE-OVERGANG: visuell pause, ingen overskrift -->
+    <figure class="transition-strip reveal">
+      <!-- TODO: video ikke konvertert ennå (rå kilde: img/fontene.MOV), se ffmpeg-forslag i samtale -->
+      <video
+        class="media-video"
+        width="1000"
+        height="563"
+        autoplay
+        loop
+        muted
+        playsinline
+        preload="metadata"
+        poster="img/fontene-poster.jpg"
+        aria-label="Fontene"
+        onerror="handleMediaError(this)"
+      >
+        <source src="img/fontene.webm" type="video/webm" />
+        <source src="img/fontene.mp4" type="video/mp4" />
+      </video>
+      <figcaption>[TODO: valgfri bildetekst, kan stå tom]</figcaption>
+    </figure>
+
+    <!-- 5. INNSATS: bilde venstre, tekst høyre -->
+    <section class="split reveal">
+      <figure class="split-media">
+        <img
+          class="split-photo"
+          src="img/militaeret.jpeg"
+          alt="[TODO: alt-tekst – vaktlaget på truger mot Gaustatoppen]"
+          width="900"
+          height="675"
+          loading="lazy"
+          onerror="handleMediaError(this)"
+        />
+        <figcaption>[TODO: bildetekst]</figcaption>
+      </figure>
+      <div class="split-text">
+        <h2>Innsats</h2>
+        <!-- TODO: avsnitt om militærtjeneste/turen.
+             Hint: konkrete detaljer (varighet, sekkevekt, vær, hva som var
+             vanskelig) er viktigere enn adjektiver. -->
+        <p>[TODO: avsnitt om innsats]</p>
+      </div>
+    </section>
+
+    <!-- 6. FRILUFTSLIV: tekst venstre, bilde høyre -->
+    <section class="split split--reverse reveal">
+      <div class="split-text">
+        <h2>Friluftsliv</h2>
+        <!-- TODO: kort avsnitt om friluftsliv -->
+        <p>[TODO: avsnitt om friluftsliv]</p>
+      </div>
+      <figure class="split-media">
+        <img
+          class="split-photo split-photo--portrait"
+          src="img/besseggen.jpeg"
+          alt="[TODO: alt-tekst – silhuett på Besseggen]"
+          width="700"
+          height="933"
+          loading="lazy"
+          onerror="handleMediaError(this)"
+        />
+        <figcaption>[TODO: bildetekst]</figcaption>
+      </figure>
+    </section>
+
+    <!-- TODO: kontakttekst -->
+    <p class="contact-line">[TODO: kontakttekst] <a href="mailto:fredrikudengen@proton.me">fredrikudengen@proton.me</a></p>
   </main>
 
+  <footer class="footer">
+    <p>© <span id="year"></span> Fredrik Udengen</p>
+  </footer>
+
   <script src="script.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
