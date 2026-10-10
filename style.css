@@ -421,10 +421,14 @@ figure figcaption {
 
 .transition-strip {
   margin: 48px 0;
+  text-align: center;
 }
-.transition-strip .media-video {
-  max-height: 260px;
-  object-fit: cover;
+.transition-strip-video {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 80vh;
+  margin: 0 auto;
 }
 .transition-strip figcaption {
   text-align: center;
@@ -470,5 +474,5 @@ figure figcaption {
   .split, .tri { padding-top: 30px; }
   .split-photo { height: 240px; }
   .split-photo--portrait { height: 320px; }
-  .transition-strip .media-video { max-height: 200px; }
+  .transition-strip-video { max-height: 60vh; }
 }
