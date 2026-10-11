@@ -417,23 +417,6 @@ figure figcaption {
   filter: sepia(6%) saturate(92%);
 }
 
-/* Fontene-overgang: smal visuell stripe */
-
-.transition-strip {
-  margin: 48px 0;
-  text-align: center;
-}
-.transition-strip-video {
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  max-height: 80vh;
-  margin: 0 auto;
-}
-.transition-strip figcaption {
-  text-align: center;
-}
-
 /* Diskret plassholder når en bilde-/videofil ikke finnes ennå */
 
 .media-placeholder {
@@ -474,5 +457,4 @@ figure figcaption {
   .split, .tri { padding-top: 30px; }
   .split-photo { height: 240px; }
   .split-photo--portrait { height: 320px; }
-  .transition-strip-video { max-height: 60vh; }
 }
