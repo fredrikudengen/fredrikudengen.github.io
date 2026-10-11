@@ -11,7 +11,7 @@
 
 * { box-sizing: border-box; }
 
-html {
+html.snap-page {
   scroll-snap-type: y mandatory;
 }
 
@@ -35,13 +35,14 @@ h1, h2, h3, .brand {
 a { color: var(--accent); }
 
 .site-header {
-  max-width: 760px;
-  margin: 0 auto;
+  width: 100%;
   padding: 32px 20px 0;
   scroll-snap-align: start;
 }
 
 .topbar {
+  max-width: 980px;
+  margin: 0 auto;
   display: flex;
   align-items: baseline;
   justify-content: space-between;
