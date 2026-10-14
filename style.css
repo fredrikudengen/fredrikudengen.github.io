@@ -470,3 +470,122 @@ figure figcaption {
   .split-photo { height: 240px; }
   .split-photo--portrait { height: 320px; }
 }
+
+/* Landing: tekst plassert i maleriets ramme (desktop) */
+
+.landing {
+  --header-h: 97px;
+  --gap: 1.5vw;                                   /* luft over og under bildet */
+  --lw: min(95vw, 1600px);                        /* marg på 2,5 % per side, maks 1600 px */
+  --lh: max(460px, calc(100svh - var(--header-h) - 2 * var(--gap)));
+  --sw: max(var(--lw), calc(var(--lh) * 4 / 3));
+  --sh: calc(var(--sw) * 0.75);
+  position: relative;
+  width: var(--lw);
+  height: var(--lh);
+  margin: var(--gap) auto;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid var(--rule);
+  background: #aebcb4;
+}
+
+/* Scenen har bildets 4:3-format og dekker seksjonen (som object-fit: cover),
+   slik at alt som er plassert i prosent/cqw følger bildet. Rammen holdes midtstilt. */
+.landing-stage {
+  position: absolute;
+  width: var(--sw);
+  height: var(--sh);
+  left: calc((100% - var(--sw)) / 2);
+  top: clamp(calc(var(--lh) - var(--sh)), calc(var(--lh) / 2 - var(--sh) * 0.495), 0px);
+  container-type: inline-size;
+}
+
+.landing-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Dekker hele maleriets innside: klippet til de fire hjørnene (prosent av bildet) */
+.plane-bg {
+  position: absolute;
+  inset: 0;
+  background: var(--paper);
+  clip-path: polygon(38.70% 38.13%, 82.20% 36.07%, 82.20% 71.33%, 38.70% 67.73%);
+}
+
+/* Planet som veggen og maleriet deler: samme perspektiv på alt. */
+.plane {
+  position: absolute;
+  left: 38.75%;
+  top: 37.07%;
+  width: 43.4cqw;
+  height: 24.2cqw;
+  transform: translateX(-1.8cqw) perspective(52cqw) rotateY(-12deg) rotateZ(0.8deg);
+}
+
+.plane-title {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 4cqw);
+  margin: 0;
+  font-size: 3cqw;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.plane-panel {
+  position: absolute;
+  inset: 0.5cqw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.4cqw;
+  padding: 1.8cqw 2.6cqw;
+  color: var(--ink);
+}
+
+.plane-panel .subtitle {
+  margin: 0;
+  font-size: 1.35cqw;
+  line-height: 1.3;
+}
+
+.plane-tagline {
+  margin: 0;
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 600;
+  font-size: 2.8cqw;
+  line-height: 1.18;
+}
+
+.plane .cta { margin-top: 0.8cqw; gap: 1.1cqw; }
+
+.plane .button {
+  font-size: 1.35cqw;
+  padding: 0.85cqw 1.7cqw;
+  border-radius: 0.3cqw;
+}
+.plane .button.ghost { border-color: var(--ink-soft); }
+
+.split.about-split { padding-top: 0; border-top: none; }
+.about-split .split-photo { height: min(72vh, 640px); object-position: center 40%; }
+
+/* Midlertidig enkel reserve under 900 px (egen mobilløsning kommer) */
+@media (max-width: 900px) {
+  .landing { width: auto; height: auto; margin: 0; overflow: visible; background: none; border: 0; border-radius: 0; }
+  .landing-stage { position: static; width: 100%; height: auto; container-type: normal; }
+  .landing-img { position: static; height: auto; aspect-ratio: 4 / 3; max-height: 55vh; }
+  .plane-bg { display: none; }
+  .plane { position: static; width: auto; height: auto; transform: none; padding: 24px 20px 8px; }
+  .plane-title { position: static; font-size: 2.2rem; white-space: normal; margin: 0 0 12px; }
+  .plane-panel { position: static; padding: 0; background: none; gap: 10px; }
+  .plane-panel .subtitle { font-size: 1.05rem; }
+  .plane-tagline { font-size: 1.5rem; }
+  .plane .cta { margin-top: 6px; gap: 14px; }
+  .plane .button { font-size: 1.05rem; padding: 13px 24px; border-radius: 5px; }
+}

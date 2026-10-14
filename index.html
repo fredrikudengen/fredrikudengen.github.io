@@ -24,32 +24,58 @@
     </div>
   </header>
 
+  <!-- LANDING: bilde fra museum, tekst plassert i maleriets ramme (desktop) -->
+  <section class="landing" aria-label="Introduksjon">
+    <div class="landing-stage">
+      <img
+        class="landing-img"
+        src="img/museum.jpg"
+        alt="Fredrik står i et museum og ser på et stort maleri av en karavane i ørkenen"
+        width="2560"
+        height="1920"
+        fetchpriority="high"
+        onerror="handleMediaError(this)"
+      />
+      <div class="plane-bg" aria-hidden="true"></div>
+      <div class="plane">
+        <h1 class="plane-title">Velkommen til nettsiden min!</h1>
+        <div class="plane-panel">
+          <p class="plane-tagline">Her kan du lese litt om meg og prosjektene mine.</p>
+          <div class="cta">
+            <a class="button" href="projects.html">Se prosjekter</a>
+            <a class="button ghost" href="mailto:fredrikudengen@proton.me">Ta kontakt</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <main class="content wide">
 
-    <!-- 1. HERO: bilde venstre, tekst høyre -->
-    <section class="split hero-split reveal">
+    <!-- 1. OM MEG: bilde venstre, tekst høyre -->
+    <section class="split about-split reveal" id="om-meg">
       <figure class="split-media">
         <img
-          class="split-photo hero-photo"
+          class="split-photo"
           src="img/pekka.JPG"
-          alt="[TODO: alt-tekst – Fredrik foran P.E.K.K.A.-statuen utenfor Supercell i Helsinki]"
+          alt="Fredrik foran P.E.K.K.A.-statuen utenfor Supercell i Helsinki"
           width="900"
           height="1200"
+          loading="lazy"
           onerror="handleMediaError(this)"
         />
-        <figcaption>[TODO: bildetekst]</figcaption>
+        <figcaption>Utenfor Supercell (Clash of Clans, Clash Royale) HQ i Helsinki</figcaption>
       </figure>
       <div class="split-text">
-        <h1>Fredrik Udengen</h1>
-        <p class="subtitle">Master i programvareutvikling (UiB/HVL)</p>
-        <!-- TODO: kort introduksjon, inkl. "hva jeg holder på med nå".
-             Hint: helseinformatikk, algoritmer og Java REST API via studiet;
-             planlegger masteroppgaven; jobber videre med Resten Ringer 2. -->
-        <p>[TODO: kort introduksjon – hva jeg holder på med nå] Necessitatibus distinctio quis corporis explicabo autem eveniet. A ut consectetur et iusto fugiat et. Nisi eveniet commodi eveniet nobis modi ratione ad. Molestiae illum omnis labore accusamus accusamus laborum.</p>
-        <div class="cta">
-          <a class="button" href="projects.html">Se prosjekter</a>
-          <a class="button ghost" href="mailto:fredrikudengen@proton.me">Ta kontakt</a>
-        </div>
+        <h2>Om meg</h2>
+        <p>Hei, jeg er Fredrik, og dette er nettsiden min. Akkurat nå tar jeg en master i programvareutvikling, et
+          samarbeid mellom HVL og UiB. Fra tidligere har jeg en bachelor i kognitiv vitenskap med spesialisering i informatikk.
+          Studiet var veldig bredt: fra biologisk psykologi og logikk til programmering og maskinlæring. Dette semesteret
+          tar jeg DAT250, hvor vi lager et Learning Management System fra bunnen av (Java, REST, Postgres, RabbitMQ). I
+          helseinformatikk ser vi på hvordan man må forholde seg til økosystemet rundt programvare (regulering,
+          standarder, brukere, tid og penger). Det siste emnet mitt er Algoritmer. Gode løsninger er effektive, og her lærer jeg
+          hvordan jeg kan bygge dem.
+        </p>
       </div>
     </section>
 
@@ -73,15 +99,23 @@
           <source src="img/rr2.webm" type="video/webm" />
           <source src="img/rr2.mp4" type="video/mp4" />
         </video>
-        <figcaption>[TODO: bildetekst – klipp fra Resten Ringer 2]</figcaption>
+        <figcaption>Resten Ringer 2 (work-in-progress)</figcaption>
       </figure>
 
       <div class="tri-text">
         <h2>Prosjekter</h2>
-        <!-- TODO: avsnitt om Resten Ringer 2 -->
-        <p>[TODO: om Resten Ringer 2] Necessitatibus distinctio quis corporis explicabo autem eveniet. A ut consectetur et iusto fugiat et. Nisi eveniet commodi eveniet nobis modi ratione ad. Molestiae illum omnis labore accusamus accusamus laborum.</p>
-        <!-- TODO: avsnitt om StudieKart -->
-        <p>[TODO: om StudieKart] Necessitatibus distinctio quis corporis explicabo autem eveniet. A ut consectetur et iusto fugiat et. Nisi eveniet commodi eveniet nobis modi ratione ad. Molestiae illum omnis labore accusamus accusamus laborum.</p>
+        <p>Selv om jeg lærte mye gjennom studiet, ville jeg prøve meg på egenhånd. Jeg startet derfor på oppfølgeren til
+          Resten Ringer, et spill en venninne og jeg lagde sammen på studiet. Det er skrevet i Python med Pygame, og er
+          det største prosjektet jeg har bygget (i skrivende stund 10 000 linjer kode). For å ha god oversikt må jeg
+          fokusere på arkitektur, dokumentasjon og god kodestil. Jeg får også testet meg på problemløsning: «Det hadde
+          vært kult, men hvordan skal jeg implementere det?». Kildekoden er åpen, så det er bare å teste selv. Jeg jobber mot
+          en release snart!
+        </p>
+        <p>Agentisk utvikling har blitt industristandard for de fleste, og jeg ville teste det selv. StudieKart var
+          det første prosjektet hvor jeg brukte Claude Code. Selv om «alle» kan vibe-kode, lærte jeg at resultatet varierer
+          mye med hvordan man bruker verktøyet. God arkitektur blir bare viktigere å kunne (SOLID, OOP, ACID og andre
+          akronymer), og her fikk jeg bruk for kunnskapen min og testet den.
+        </p>
         <p class="links-row">
           <a href="https://github.com/fredrikudengen/Resten-Ringer-2" target="_blank" rel="noopener">test spillet</a>
           · <a href="https://studiekart.onrender.com/" target="_blank" rel="noopener">StudieKart (live)</a>
@@ -91,11 +125,10 @@
       </div>
 
       <figure class="tri-media tri-media--stack">
-        <!-- Midlertidig: bruker img/studymap.png til kunnskapsgrafen er klar som img/studiekart-graf.png -->
         <img
           class="project-thumb"
-          src="img/studymap.png"
-          alt="[TODO: alt – kunnskapsgrafen i StudieKart]"
+          src="img/studiekart-graf.png"
+          alt="Kunnskapsgrafen til Web-Design"
           width="500"
           height="339"
           loading="lazy"
@@ -104,13 +137,13 @@
         <img
           class="project-thumb"
           src="img/studiekart-emner.png"
-          alt="[TODO: alt – emneoversikt i StudieKart]"
+          alt="Emneoversikt for Web-Design"
           width="500"
           height="339"
           loading="lazy"
           onerror="handleMediaError(this)"
         />
-        <figcaption>[TODO: felles bildetekst for begge StudieKart-skjermbildene]</figcaption>
+        <figcaption>Emne-oversikt og kunnskapsgraf for Web-Design i StudieKart!</figcaption>
       </figure>
     </section>
 
@@ -118,8 +151,13 @@
     <section class="split split--reverse reveal">
       <div class="split-text">
         <h2>Kunst og kultur</h2>
-        <!-- TODO: kort avsnitt om kunst/kultur-interesse -->
-        <p>[TODO: avsnitt om kunst og kultur] Necessitatibus distinctio quis corporis explicabo autem eveniet. A ut consectetur et iusto fugiat et. Nisi eveniet commodi eveniet nobis modi ratione ad. Molestiae illum omnis labore accusamus accusamus laborum. Necessitatibus distinctio quis corporis explicabo autem eveniet. A ut consectetur et iusto fugiat et. Nisi eveniet commodi eveniet nobis modi ratione ad. Molestiae illum omnis labore accusamus accusamus laborum.</p>
+        <p>Jeg bruker bøker og film for å forstå samfunnet og teknologien jeg selv er med på å bygge. Mark Fishers
+          «Capitalist Realism» og Robin Wall Kimmerers «The Serviceberry» ga meg to ulike innganger til samme
+          spørsmål: hvordan et system gjør sine egne spilleregler til «menneskets natur». David Foster Wallace har
+          fått meg til å skrive egne essays, hvor jeg går ut, opplever noe konkret og bruker skrivingen til å tenke.
+          Duchamps «Fountain» stiller et spørsmål jeg liker å ta med meg: hvor mye av verdien ligger i objektet, og hvor
+          mye ligger i rammen rundt det?
+        </p>
         <p class="links-row">
           <a href="boker.html">Bøker</a> · <a href="filmer.html">Filmer</a>
         </p>
@@ -128,13 +166,13 @@
         <img
           class="split-photo"
           src="img/fountain.JPG"
-          alt="[TODO: alt-tekst – ved Duchamps «Fountain» på Tate Modern]"
+          alt="Marcel Duchamps «Fountain» utstilt på Tate Modern"
           width="900"
           height="1200"
           loading="lazy"
           onerror="handleMediaError(this)"
         />
-        <figcaption>[TODO: bildetekst]</figcaption>
+        <figcaption>Duchamps «Fountain» på Tate Modern</figcaption>
       </figure>
     </section>
 
@@ -144,20 +182,21 @@
         <img
           class="split-photo"
           src="img/militaeret.jpeg"
-          alt="[TODO: alt-tekst – vaktlaget på truger mot Gaustatoppen]"
+          alt="Vaktlaget på truger mot Gaustatoppen"
           width="900"
           height="675"
           loading="lazy"
           onerror="handleMediaError(this)"
         />
-        <figcaption>[TODO: bildetekst]</figcaption>
+        <figcaption>Vaktlaget på vei mot Gaustatoppen</figcaption>
       </figure>
       <div class="split-text">
         <h2>Innsats</h2>
-        <!-- TODO: avsnitt om militærtjeneste/turen.
-             Hint: konkrete detaljer (varighet, sekkevekt, vær, hva som var
-             vanskelig) er viktigere enn adjektiver. -->
-        <p>[TODO: avsnitt om innsats] Necessitatibus distinctio quis corporis explicabo autem eveniet. A ut consectetur et iusto fugiat et. Nisi eveniet commodi eveniet nobis modi ratione ad. Molestiae illum omnis labore accusamus accusamus laborum.</p>
+        <p>Jeg gjennomførte militærtjenesten i [avdeling og sted] i [varighet]. Bildet er fra en tur med vaktlaget
+          på truger mot Gaustatoppen, med [sekkevekt] på ryggen og [vær] underveis. Det vanskeligste var
+          [hva som var vanskelig]. Jeg lærte at [konkret erfaring], og det tar jeg med meg både inn i studiet og inn
+          i arbeid på lag. Det jeg er mest fornøyd med fra tiden er [hva du er mest fornøyd med].
+        </p>
       </div>
     </section>
 
@@ -165,25 +204,27 @@
     <section class="split split--reverse reveal">
       <div class="split-text">
         <h2>Friluftsliv</h2>
-        <!-- TODO: kort avsnitt om friluftsliv -->
-        <p>[TODO: avsnitt om friluftsliv] Necessitatibus distinctio quis corporis explicabo autem eveniet. A ut consectetur et iusto fugiat et. Nisi eveniet commodi eveniet nobis modi ratione ad. Molestiae illum omnis labore accusamus accusamus laborum.</p>
+        <p>Tid i naturen er noe jeg bevisst prioriterer, sammen med bøker og forelesninger. Besseggen gikk jeg
+          [når] i [vær], og turen var [distanse og varighet]. Jeg liker å ha tall på turene mine, og sammenligner dem med data fra
+          Fitbit og Google Health. Jeg vurderer derfor å lage en egen, selvhostet app for å følge og sammenligne turer,
+          kalt Yamabiko.
+        </p>
       </div>
       <figure class="split-media">
         <img
           class="split-photo split-photo--portrait"
           src="img/besseggen.jpeg"
-          alt="[TODO: alt-tekst – silhuett på Besseggen]"
+          alt="Silhuett av en fjellvandrer på Besseggen"
           width="700"
           height="933"
           loading="lazy"
           onerror="handleMediaError(this)"
         />
-        <figcaption>[TODO: bildetekst]</figcaption>
+        <figcaption>På Besseggen, [måned og år]</figcaption>
       </figure>
     </section>
 
-    <!-- TODO: kontakttekst -->
-    <p class="contact-line">[TODO: kontakttekst] <a href="mailto:fredrikudengen@proton.me">fredrikudengen@proton.me</a></p>
+    <p class="contact-line">Vil du snakke om prosjekter, studiet eller en bok? Send meg en e-post: <a href="mailto:fredrikudengen@proton.me">fredrikudengen@proton.me</a></p>
   </main>
 
   <footer class="footer">
@@ -193,6 +234,18 @@
   <script src="script.js"></script>
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Landing fyller resten av skjermen under toppmenyen
+    (function () {
+      var header = document.querySelector(".site-header");
+      var landing = document.querySelector(".landing");
+      function setHeaderHeight() {
+        landing.style.setProperty("--header-h", header.offsetHeight + "px");
+      }
+      setHeaderHeight();
+      window.addEventListener("resize", setHeaderHeight);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(setHeaderHeight);
+    })();
   </script>
 </body>
 </html>
