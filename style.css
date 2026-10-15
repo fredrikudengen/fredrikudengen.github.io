@@ -531,9 +531,9 @@ figure figcaption {
 .plane-title {
   position: absolute;
   left: 0;
-  bottom: calc(100% + 4cqw);
+  bottom: calc(100% + 5cqw);
   margin: 0;
-  font-size: 3cqw;
+  font-size: 5cqw;
   line-height: 1;
   white-space: nowrap;
 }
@@ -575,17 +575,48 @@ figure figcaption {
 .split.about-split { padding-top: 0; border-top: none; }
 .about-split .split-photo { height: min(72vh, 640px); object-position: center 40%; }
 
-/* Midlertidig enkel reserve under 900 px (egen mobilløsning kommer) */
+/* Mobil og smal skjerm (under 900 px): tett utsnitt av rammen, tekst sentrert i den.
+   Samme scene som på desktop, men forstørret slik at rammen fyller bredden. */
 @media (max-width: 900px) {
-  .landing { width: auto; height: auto; margin: 0; overflow: visible; background: none; border: 0; border-radius: 0; }
-  .landing-stage { position: static; width: 100%; height: auto; container-type: normal; }
-  .landing-img { position: static; height: auto; aspect-ratio: 4 / 3; max-height: 55vh; }
-  .plane-bg { display: none; }
-  .plane { position: static; width: auto; height: auto; transform: none; padding: 24px 20px 8px; }
-  .plane-title { position: static; font-size: 2.2rem; white-space: normal; margin: 0 0 12px; }
-  .plane-panel { position: static; padding: 0; background: none; gap: 10px; }
-  .plane-panel .subtitle { font-size: 1.05rem; }
-  .plane-tagline { font-size: 1.5rem; }
-  .plane .cta { margin-top: 6px; gap: 14px; }
-  .plane .button { font-size: 1.05rem; padding: 13px 24px; border-radius: 5px; }
+  .landing {
+    --gap: 12px;
+    --lw: calc(100vw - 24px);
+    --zoom: 2;                                    /* scenens bredde i forhold til utsnittet */
+    --lh: calc(var(--lw) * 0.95);
+    --sw: calc(var(--lw) * var(--zoom));
+    --sh: calc(var(--sw) * 0.75);
+    margin: var(--gap) auto;
+    border-radius: 12px;
+  }
+
+  /* Rammen (midt i bildet, x ≈ 60,8 %) midtstilles; utsnittet starter litt over navnet på veggen */
+  .landing-stage {
+    left: calc(50% - var(--sw) * 0.608);
+    top: calc(var(--sh) * -0.19);
+  }
+
+  .plane-title {
+    font-size: 5cqw;
+    bottom: calc(100% + 4cqw);
+    width: 100%;
+    text-align: center;
+  }
+
+  .plane-panel {
+    align-items: center;
+    text-align: center;
+    gap: 1.2cqw;
+    padding: 1cqw 2.2cqw 1.6cqw;
+  }
+
+  .plane-panel .subtitle { font-size: 1.65cqw; }
+  .plane-tagline { font-size: 2.6cqw; line-height: 1.15; }
+
+  .plane .cta { justify-content: center; margin-top: 0.6cqw; gap: 1.5cqw; }
+  .plane .button {
+    font-size: 1.8cqw;
+    line-height: 1.2;
+    padding: 1cqw 2.2cqw;
+    border-radius: 0.6cqw;
+  }
 }
