@@ -25,6 +25,36 @@
   });
 })();
 
+// «Til toppen»-knapp nede i høyre hjørne, vises når man har scrollet forbi første skjerm
+(function () {
+  var button = document.createElement("button");
+  button.type = "button";
+  button.className = "to-top";
+  button.innerHTML = '<span aria-hidden="true">↑</span> Til toppen';
+  document.body.appendChild(button);
+
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  button.addEventListener("click", function () {
+    window.scrollTo({ top: 0, behavior: reduceMotion.matches ? "auto" : "smooth" });
+    var brand = document.querySelector(".brand");
+    if (brand) brand.focus({ preventScroll: true });
+  });
+
+  var ticking = false;
+  function update() {
+    button.classList.toggle("is-visible", window.scrollY > window.innerHeight * 0.6);
+    ticking = false;
+  }
+  window.addEventListener("scroll", function () {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+  }, { passive: true });
+  update();
+})();
+
 // Plassholder for bilder/videoer som ikke er lagt til ennå (kalles via onerror="")
 function handleMediaError(el) {
   if (!el?.parentNode || el.dataset.placeholderApplied) return;

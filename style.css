@@ -14,6 +14,11 @@
 html.snap-page {
   scroll-snap-type: y mandatory;
 }
+/* Bunnen av siden må også være et snap-punkt, ellers snapper nettleseren
+   tilbake til siste seksjon og kontaktlinjen og footeren blir utilgjengelige */
+html.snap-page .footer {
+  scroll-snap-align: end;
+}
 
 body {
   margin: 0;
@@ -178,12 +183,6 @@ a { color: var(--accent); }
 
 .card p { color: var(--ink); margin: 0 0 12px; }
 .card p:last-child { margin-bottom: 0; }
-
-.bullets {
-  margin: 0;
-  padding-left: 18px;
-  color: var(--ink-soft);
-}
 
 .card blockquote {
   margin: 0 0 12px;
@@ -414,11 +413,6 @@ figure figcaption {
   scroll-snap-align: start;
 }
 
-.split.hero-split {
-  padding-top: 0;
-  border-top: none;
-}
-
 .split-media,
 .split-text {
   width: 100%;
@@ -455,26 +449,6 @@ figure figcaption {
 }
 
 .links-row a { white-space: nowrap; }
-
-/* Prosjekter: video | tekst | bilder */
-
-.tri {
-  display: grid;
-  grid-template-columns: 1fr;
-  align-content: center;
-  gap: 28px;
-  padding-top: 40px;
-  border-top: 1px solid var(--rule);
-  min-height: 100vh;
-  scroll-snap-align: start;
-}
-
-.tri-media--stack {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.tri-media--stack .project-thumb { margin-bottom: 0; }
 
 .media-video {
   display: block;
@@ -517,12 +491,10 @@ figure figcaption {
 
   .split--reverse .split-media { order: 2; }
   .split--reverse .split-text { order: 1; }
-
-  .tri { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; align-items: start; }
 }
 
 @media (max-width: 620px) {
-  .split, .tri { padding-top: 30px; }
+  .split { padding-top: 30px; }
   .split-photo { height: 240px; }
 }
 
@@ -535,6 +507,11 @@ figure figcaption {
   --lh: max(460px, calc(100svh - var(--header-h) - 2 * var(--gap)));
   --sw: max(var(--lw), calc(var(--lh) * 4 / 3));
   --sh: calc(var(--sw) * 0.75);
+  /* Fargen inne i maleriets ramme: skift verdiene her for å prøve en annen */
+  --plane-fill: #a69574;   /* alternativer: #2a2420 blekk, #6b2f24 oksblod, #e3d6b8 gammelt lerret */
+  --plane-ink: #f6f1e6;
+  /* Overskriften over rammen. cqw = prosent av hele museumsbildets bredde, ikke skjermen */
+  --title-size: 3cqw;
   position: relative;
   width: var(--lw);
   height: var(--lh);
@@ -569,7 +546,7 @@ figure figcaption {
 .plane-bg {
   position: absolute;
   inset: 0;
-  background: var(--paper);
+  background: var(--plane-fill);
   clip-path: polygon(38.70% 38.13%, 82.20% 36.07%, 82.20% 71.33%, 38.70% 67.73%);
 }
 
@@ -586,9 +563,9 @@ figure figcaption {
 .plane-title {
   position: absolute;
   left: 0;
-  bottom: calc(100% + 3.5cqw);
+  bottom: calc(100% + 3cqw);
   margin: 0;
-  font-size: 3cqw;
+  font-size: var(--title-size);
   line-height: 1.05;
   white-space: nowrap;
 }
@@ -601,7 +578,7 @@ figure figcaption {
   justify-content: center;
   gap: 1.4cqw;
   padding: 1.8cqw 2.6cqw;
-  color: var(--ink);
+  color: var(--plane-ink);
 }
 
 .plane-panel .subtitle {
@@ -624,8 +601,25 @@ figure figcaption {
   font-size: 1.35cqw;
   padding: 0.85cqw 1.7cqw;
   border-radius: 0.3cqw;
+  background: var(--plane-ink);
+  color: var(--plane-fill);
+  border-color: var(--plane-ink);
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
-.plane .button.ghost { border-color: var(--ink-soft); }
+.plane .button:hover {
+  background: var(--accent);
+  color: var(--paper);
+  border-color: var(--accent);
+}
+.plane .button.ghost {
+  background: transparent;
+  color: var(--plane-ink);
+  border-color: var(--plane-ink);
+}
+.plane .button.ghost:hover {
+  background: var(--plane-ink);
+  color: var(--plane-fill);
+}
 
 /* Hva jeg holder på med nå: smal tekstkolonne, én skjerm */
 .now {
@@ -682,8 +676,6 @@ figure figcaption {
   }
 
   .plane-title {
-    font-size: 4.4cqw;
-    bottom: calc(100% + 3.5cqw);
     width: 100%;
     text-align: center;
     white-space: normal;
@@ -737,9 +729,8 @@ figure figcaption {
   filter: sepia(6%) saturate(92%);
 }
 .project-text h2 .status { font-size: 0.8rem; vertical-align: middle; margin-left: 6px; }
-.project-text .chips { margin: 0 0 14px; }
+.project-text .chips { margin: 0 0 14px; gap: 4px 0; }
 .project-text .chip::before { content: ""; }
-.project-text .chips { gap: 4px 0; }
 .project-text .chip:not(:last-child)::after { content: ",\00a0"; color: var(--ink-soft); }
 @media (min-width: 901px) {
   .project { flex-direction: row; align-items: center; gap: 56px; width: min(1360px, 94vw); margin-inline: calc(50% - min(680px, 47vw)); }
