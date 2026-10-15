@@ -126,6 +126,38 @@ a { color: var(--accent); }
   color: var(--accent);
 }
 
+.to-top {
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  z-index: 50;
+  padding: 10px 16px;
+  border-radius: 5px;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(42, 36, 32, 0.18);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s,
+    background-color 0.2s ease, border-color 0.2s ease;
+}
+.to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+.to-top:hover { background: var(--accent); border-color: var(--accent); }
+.to-top:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) {
+  .to-top { transition: none; }
+}
+
 .content {
   max-width: 760px;
   margin: 0 auto 60px;
@@ -326,8 +358,23 @@ a { color: var(--accent); }
   opacity: 1;
   transform: translateY(0);
 }
+/* Snap-seksjoner må ikke flyttes selv, ellers re-snapper nettleseren når
+   transformen er ferdig. Flytt innholdet i stedet. */
+html.snap-page .reveal {
+  transform: none;
+  transition: opacity 0.7s ease;
+}
+html.snap-page .reveal > * {
+  transform: translateY(18px);
+  transition: transform 0.7s ease;
+  transition-delay: inherit;
+}
+html.snap-page .reveal.is-visible > * {
+  transform: none;
+}
 @media (prefers-reduced-motion: reduce) {
-  .reveal {
+  .reveal,
+  html.snap-page .reveal > * {
     opacity: 1;
     transform: none;
     transition: none;
@@ -391,7 +438,16 @@ figure figcaption {
   filter: sepia(6%) saturate(92%);
 }
 
-.split-photo--portrait { height: 380px; }
+/* Hele bildet uten beskjæring, begrenset av skjermhøyden så det passer i seksjonen */
+.split-photo.split-photo--full {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: min(78vh, 760px);
+  margin-inline: auto;
+  object-fit: contain;
+}
 
 .links-row {
   margin-top: 14px;
@@ -468,7 +524,6 @@ figure figcaption {
 @media (max-width: 620px) {
   .split, .tri { padding-top: 30px; }
   .split-photo { height: 240px; }
-  .split-photo--portrait { height: 320px; }
 }
 
 /* Landing: tekst plassert i maleriets ramme (desktop) */
@@ -531,10 +586,10 @@ figure figcaption {
 .plane-title {
   position: absolute;
   left: 0;
-  bottom: calc(100% + 5cqw);
+  bottom: calc(100% + 3.5cqw);
   margin: 0;
-  font-size: 5cqw;
-  line-height: 1;
+  font-size: 3cqw;
+  line-height: 1.05;
   white-space: nowrap;
 }
 
@@ -572,6 +627,37 @@ figure figcaption {
 }
 .plane .button.ghost { border-color: var(--ink-soft); }
 
+/* Hva jeg holder på med nå: smal tekstkolonne, én skjerm */
+.now {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  padding-top: 40px;
+  border-top: 1px solid var(--rule);
+  min-height: 100vh;
+  scroll-snap-align: start;
+}
+.now-inner { width: 100%; max-width: 640px; }
+.now h2 { margin: 0; }
+
+.now-updated {
+  margin: 6px 0 22px;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  color: var(--ink-soft);
+}
+.now-updated::before {
+  content: "";
+  display: inline-block;
+  width: 0.55em;
+  height: 0.55em;
+  margin-right: 0.7em;
+  border-radius: 50%;
+  background: var(--green);
+  vertical-align: 0.05em;
+}
+
 .split.about-split { padding-top: 0; border-top: none; }
 .about-split .split-photo { height: min(72vh, 640px); object-position: center 40%; }
 
@@ -582,7 +668,7 @@ figure figcaption {
     --gap: 12px;
     --lw: calc(100vw - 24px);
     --zoom: 2;                                    /* scenens bredde i forhold til utsnittet */
-    --lh: calc(var(--lw) * 0.95);
+    --lh: calc(var(--lw) * 1.02);
     --sw: calc(var(--lw) * var(--zoom));
     --sh: calc(var(--sw) * 0.75);
     margin: var(--gap) auto;
@@ -592,14 +678,16 @@ figure figcaption {
   /* Rammen (midt i bildet, x ≈ 60,8 %) midtstilles; utsnittet starter litt over navnet på veggen */
   .landing-stage {
     left: calc(50% - var(--sw) * 0.608);
-    top: calc(var(--sh) * -0.19);
+    top: calc(var(--sh) * -0.14);
   }
 
   .plane-title {
-    font-size: 5cqw;
-    bottom: calc(100% + 4cqw);
+    font-size: 4.4cqw;
+    bottom: calc(100% + 3.5cqw);
     width: 100%;
     text-align: center;
+    white-space: normal;
+    text-wrap: balance;
   }
 
   .plane-panel {
@@ -619,4 +707,47 @@ figure figcaption {
     padding: 1cqw 2.2cqw;
     border-radius: 0.6cqw;
   }
+}
+
+/* Mobil: Om meg-bildet skal ikke skyve overskriften og teksten ut av første skjerm */
+@media (max-width: 620px) {
+  .about-split .split-photo { height: min(52vh, 440px); }
+}
+
+/* Prosjekter: én seksjon per prosjekt, stort bilde + lite tekst */
+.project {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  justify-content: center;
+  padding-top: 40px;
+  border-top: 1px solid var(--rule);
+  min-height: 100vh;
+  scroll-snap-align: start;
+}
+.project-media, .project-text { width: 100%; min-width: 0; }
+.project-media { order: 1; }
+.project-text { order: 2; }
+.project-shot {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--rule);
+  background: var(--paper-alt);
+  filter: sepia(6%) saturate(92%);
+}
+.project-text h2 .status { font-size: 0.8rem; vertical-align: middle; margin-left: 6px; }
+.project-text .chips { margin: 0 0 14px; }
+.project-text .chip::before { content: ""; }
+.project-text .chips { gap: 4px 0; }
+.project-text .chip:not(:last-child)::after { content: ",\00a0"; color: var(--ink-soft); }
+@media (min-width: 901px) {
+  .project { flex-direction: row; align-items: center; gap: 56px; width: min(1360px, 94vw); margin-inline: calc(50% - min(680px, 47vw)); }
+  .project-media { flex: 3; }
+  .project-text { flex: 2; }
+  .project--reverse .project-media { order: 2; }
+  .project--reverse .project-text { order: 1; }
+}
+@media (max-width: 900px) {
+  .project { min-height: 0; padding-bottom: 40px; }
 }
