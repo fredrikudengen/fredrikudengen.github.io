@@ -1,11 +1,9 @@
-// Topp 5 album og sanger fra Last.fm, med valg av periode.
-// Last.fm-nøkkelen er skrivebeskyttet og gjelder en offentlig profil, så det går fint at den ligger her.
 (function () {
   var USER = "Dengern";
-  var API_KEY = "d61b19d525a280751244c35d619446f1"; // lag en på https://www.last.fm/api/account/create
-  var LIMIT = 5;
-  var CACHE_MS = 60 * 60 * 1000; // husk svaret i én time, så siden ikke spammer API-et
-  var DEFAULT_PERIOD = "1month"; // 7day | 1month | 3month | 6month | 12month | overall
+  var API_KEY = "d61b19d525a280751244c35d619446f1"; // skrivebeskyttet ;)
+  var CACHE_MS = 60 * 60 * 1000;
+  var COVER_CACHE_MS = 7 * 24 * 60 * 60 * 1000;
+  var DEFAULT_PERIOD = "1month"; 
 
   var root = document.getElementById("musikk");
   if (!root) return;
@@ -16,12 +14,24 @@
   var buttons = root.querySelectorAll(".music-periods button");
   var requestId = 0;
 
-  function call(method, period) {
-    var key = "lfm:" + method + ":" + USER + ":" + period;
+  function readCache(key, maxAge) {
     try {
       var cached = JSON.parse(localStorage.getItem(key));
-      if (cached && Date.now() - cached.t < CACHE_MS) return Promise.resolve(cached.d);
+      if (cached && Date.now() - cached.t < maxAge) return cached;
     } catch (e) {}
+    return null;
+  }
+
+  function writeCache(key, data) {
+    try {
+      localStorage.setItem(key, JSON.stringify({ t: Date.now(), d: data }));
+    } catch (e) {}
+  }
+
+  function call(method, period) {
+    var key = "lfm:" + method + ":" + USER + ":" + period;
+    var cached = readCache(key, CACHE_MS);
+    if (cached) return Promise.resolve(cached.d);
 
     var params = new URLSearchParams({
       method: method,
@@ -38,14 +48,12 @@
       })
       .then(function (d) {
         if (d.error) throw new Error(d.message || "Last.fm-feil");
-        try {
-          localStorage.setItem(key, JSON.stringify({ t: Date.now(), d: d }));
-        } catch (e) {}
+        writeCache(key, d);
         return d;
       });
   }
 
-  // Last.fm gir en tom streng eller en standard stjerne-plassholder når albumet mangler cover
+  // Last.fm gir ofte en tom streng eller en standard plassholder når albumet mangler cover
   function coverUrl(images) {
     if (!images || !images.length) return "";
     var pick = images.filter(function (i) { return i.size === "large"; })[0] || images[images.length - 1];
@@ -54,7 +62,70 @@
     return url;
   }
 
-  function item(rank, title, artist, plays, href, cover) {
+  function norm(s) {
+    return String(s || "")
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[̀-ͯ]/g, "")
+      .replace(/[^a-z0-9]+/g, "");
+  }
+
+  function related(a, b) {
+    return !!a && !!b && (a.indexOf(b) !== -1 || b.indexOf(a) !== -1);
+  }
+
+  // Reserve når Last.fm ikke har cover: iTunes Search (ingen nøkkel).
+  // Godtar bare treff der både artist og albumtittel stemmer, så vi heller viser tom ramme enn feil cover.
+  function fallbackCover(artist, album) {
+    var key = "cover:" + norm(artist) + "|" + norm(album);
+    var cached = readCache(key, COVER_CACHE_MS);
+    if (cached) return Promise.resolve(cached.d);
+
+    var params = new URLSearchParams({
+      term: artist + " " + album,
+      media: "music",
+      entity: "album",
+      limit: 8,
+    });
+    return fetch("https://itunes.apple.com/search?" + params)
+      .then(function (r) {
+        if (!r.ok) throw new Error("HTTP " + r.status);
+        return r.json();
+      })
+      .then(function (d) {
+        var wantArtist = norm(artist);
+        var wantAlbum = norm(album);
+        var hit = (d.results || []).filter(function (x) {
+          return related(norm(x.artistName), wantArtist) && related(norm(x.collectionName), wantAlbum);
+        })[0];
+        var url = hit && hit.artworkUrl100 ? hit.artworkUrl100.replace("100x100bb", "200x200bb") : "";
+        writeCache(key, url);
+        return url;
+      })
+      .catch(function () {
+        return ""; // ikke cache feil, prøv igjen neste gang
+      });
+  }
+
+  function coverImg(url) {
+    var img = document.createElement("img");
+    img.className = "music-cover";
+    img.src = url;
+    img.alt = "";
+    img.loading = "lazy";
+    img.width = 56;
+    img.height = 56;
+    return img;
+  }
+
+  function emptyCover() {
+    var ph = document.createElement("span");
+    ph.className = "music-cover music-cover--empty";
+    ph.setAttribute("aria-hidden", "true");
+    return ph;
+  }
+
+  function item(rank, title, artist, plays, href, withCover) {
     var li = document.createElement("li");
     li.className = "music-item";
 
@@ -63,23 +134,7 @@
     rankEl.textContent = rank;
     li.appendChild(rankEl);
 
-    if (cover !== undefined) {
-      if (cover) {
-        var img = document.createElement("img");
-        img.className = "music-cover";
-        img.src = cover;
-        img.alt = "";
-        img.loading = "lazy";
-        img.width = 56;
-        img.height = 56;
-        li.appendChild(img);
-      } else {
-        var ph = document.createElement("span");
-        ph.className = "music-cover music-cover--empty";
-        ph.setAttribute("aria-hidden", "true");
-        li.appendChild(ph);
-      }
-    }
+    if (withCover) li.appendChild(emptyCover());
 
     var text = document.createElement("span");
     text.className = "music-text";
@@ -104,13 +159,28 @@
     return li;
   }
 
+  function swapCover(li, url) {
+    var ph = li.querySelector(".music-cover");
+    if (!ph || !url) return;
+    var img = coverImg(url);
+    // Hvis bildet ikke lar seg laste, behold den tomme rammen
+    img.onerror = function () { if (img.parentNode) img.parentNode.replaceChild(emptyCover(), img); };
+    ph.parentNode.replaceChild(img, ph);
+  }
+
   function renderAlbums(data) {
     albumsEl.textContent = "";
     var list = (data.topalbums && data.topalbums.album) || [];
     list.forEach(function (al, i) {
-      albumsEl.appendChild(
-        item(i + 1, al.name, al.artist.name, al.playcount, al.url, coverUrl(al.image))
-      );
+      var li = item(i + 1, al.name, al.artist.name, al.playcount, al.url, true);
+      albumsEl.appendChild(li);
+
+      var url = coverUrl(al.image);
+      if (url) {
+        swapCover(li, url);
+      } else {
+        fallbackCover(al.artist.name, al.name).then(function (u) { swapCover(li, u); });
+      }
     });
   }
 
@@ -118,7 +188,7 @@
     tracksEl.textContent = "";
     var list = (data.toptracks && data.toptracks.track) || [];
     list.forEach(function (t, i) {
-      tracksEl.appendChild(item(i + 1, t.name, t.artist.name, t.playcount, t.url));
+      tracksEl.appendChild(item(i + 1, t.name, t.artist.name, t.playcount, t.url, false));
     });
   }
 
