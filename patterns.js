@@ -1,4 +1,4 @@
-// Små generative SVG-mønstre til filmkortene på filmer.html.
+// Små generative SVG-mønstre til kortene på filmer.html og boker.html.
 // Samme tittel gir alltid samme mønster (seedet fra tittelen).
 //
 // Bruk:  makePattern(title, slug, kind)  ->  <svg>-element
@@ -11,8 +11,13 @@
   var H = 120;
   var SVGNS = "http://www.w3.org/2000/svg";
 
-  // Standardvalg for filmene som finnes fra før. Koblingene er skjønn, ikke fasit.
+  // Standardvalg for verk som finnes fra før (filmer og noen bøker). Koblingene er
+  // skjønn, ikke fasit. Bøker uten oppføring her får en type valgt ut fra tittelen.
   var DEFAULTS = {
+    "meditations": "nested:6",
+    "bhagavad-gita": "radial",
+    "sapiens": "flow",
+    "maus-i-og-ii": "truchet",
     "digger": "flow",
     "project-hail-mary": "radial",
     "one-battle-after-another": "truchet",

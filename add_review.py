@@ -32,7 +32,7 @@ CATEGORY_MAP = {
         "listing_file": "boker.html",
         "listing_label": "Bøker",
         "meta_key": "books",
-        "meta_fields": ["forfatter", "aar", "dato"],
+        "meta_fields": ["forfatter", "aar", "dato", "moenster"],
     },
     "film": {
         "resource_dir": "movies",
