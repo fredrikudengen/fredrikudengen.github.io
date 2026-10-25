@@ -1,9 +1,10 @@
 (function () {
   var USER = "Dengern";
   var API_KEY = "d61b19d525a280751244c35d619446f1"; // skrivebeskyttet ;)
+  var LIMIT = 5;
   var CACHE_MS = 60 * 60 * 1000;
   var COVER_CACHE_MS = 7 * 24 * 60 * 60 * 1000;
-  var DEFAULT_PERIOD = "1month"; 
+  var DEFAULT_PERIOD = "1month";
 
   var root = document.getElementById("musikk");
   if (!root) return;
