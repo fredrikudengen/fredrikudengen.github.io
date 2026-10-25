@@ -2,9 +2,9 @@
   var USER = "Dengern";
   var API_KEY = "d61b19d525a280751244c35d619446f1"; // skrivebeskyttet ;)
   var LIMIT = 5;
-  var CACHE_MS = 60 * 60 * 1000;
-  var COVER_CACHE_MS = 7 * 24 * 60 * 60 * 1000;
-  var DEFAULT_PERIOD = "1month";
+  var CACHE_MS = 60 * 60 * 1000; // husk svaret i én time, så siden ikke spammer API-et
+  var COVER_CACHE_MS = 7 * 24 * 60 * 60 * 1000; // cover endrer seg sjelden
+  var DEFAULT_PERIOD = "1month"; // 7day | 1month | 3month | 6month | 12month | overall
 
   var root = document.getElementById("musikk");
   if (!root) return;
@@ -113,6 +113,7 @@
     img.className = "music-cover";
     img.src = url;
     img.alt = "";
+    img.referrerPolicy = "no-referrer";
     img.loading = "lazy";
     img.width = 56;
     img.height = 56;
@@ -160,12 +161,15 @@
     return li;
   }
 
-  function swapCover(li, url) {
+  function swapCover(li, url, onFail) {
     var ph = li.querySelector(".music-cover");
     if (!ph || !url) return;
     var img = coverImg(url);
-    // Hvis bildet ikke lar seg laste, behold den tomme rammen
-    img.onerror = function () { if (img.parentNode) img.parentNode.replaceChild(emptyCover(), img); };
+    // Hvis bildet ikke lar seg laste (f.eks. blokkert av ORB), behold den tomme rammen og prøv reserven
+    img.onerror = function () {
+      if (img.parentNode) img.parentNode.replaceChild(emptyCover(), img);
+      if (onFail) onFail();
+    };
     ph.parentNode.replaceChild(img, ph);
   }
 
@@ -176,11 +180,15 @@
       var li = item(i + 1, al.name, al.artist.name, al.playcount, al.url, true);
       albumsEl.appendChild(li);
 
+      function useFallback() {
+        fallbackCover(al.artist.name, al.name).then(function (u) { swapCover(li, u); });
+      }
+
       var url = coverUrl(al.image);
       if (url) {
-        swapCover(li, url);
+        swapCover(li, url, useFallback);
       } else {
-        fallbackCover(al.artist.name, al.name).then(function (u) { swapCover(li, u); });
+        useFallback();
       }
     });
   }
