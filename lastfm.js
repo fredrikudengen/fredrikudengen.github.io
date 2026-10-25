@@ -71,6 +71,11 @@
       .replace(/[^a-z0-9]+/g, "");
   }
 
+  // «The Infamous (Expanded Edition)» -> «The Infamous»
+  function stripEdition(s) {
+    return String(s || "").replace(/\s*[\(\[][^)\]]*[\)\]]\s*/g, " ").trim() || String(s || "");
+  }
+
   function related(a, b) {
     return !!a && !!b && (a.indexOf(b) !== -1 || b.indexOf(a) !== -1);
   }
@@ -82,29 +87,46 @@
     var cached = readCache(key, COVER_CACHE_MS);
     if (cached) return Promise.resolve(cached.d);
 
-    var params = new URLSearchParams({
-      term: artist + " " + album,
-      media: "music",
-      entity: "album",
-      limit: 8,
-    });
-    return fetch("https://itunes.apple.com/search?" + params)
-      .then(function (r) {
-        if (!r.ok) throw new Error("HTTP " + r.status);
-        return r.json();
-      })
-      .then(function (d) {
-        var wantArtist = norm(artist);
-        var wantAlbum = norm(album);
-        var hit = (d.results || []).filter(function (x) {
-          return related(norm(x.artistName), wantArtist) && related(norm(x.collectionName), wantAlbum);
-        })[0];
-        var url = hit && hit.artworkUrl100 ? hit.artworkUrl100.replace("100x100bb", "200x200bb") : "";
-        writeCache(key, url);
+    var wantArtist = norm(artist);
+    var wantAlbum = norm(stripEdition(album));
+
+    function search(term) {
+      var params = new URLSearchParams({
+        term: term,
+        media: "music",
+        entity: "album",
+        limit: 25,
+      });
+      return fetch("https://itunes.apple.com/search?" + params)
+        .then(function (r) {
+          if (!r.ok) throw new Error("HTTP " + r.status);
+          return r.json();
+        })
+        .then(function (d) {
+          var results = d.results || [];
+          var hit = results.filter(function (x) {
+            return related(norm(x.artistName), wantArtist) &&
+              related(norm(stripEdition(x.collectionName)), wantAlbum);
+          })[0];
+          if (!hit) {
+            console.info("[lastfm] Ingen cover-treff i iTunes for «" + term + "»", results.slice(0, 5).map(function (x) {
+              return x.artistName + " – " + x.collectionName;
+            }));
+          }
+          return hit && hit.artworkUrl100 ? hit.artworkUrl100.replace("100x100bb", "200x200bb") : "";
+        });
+    }
+
+    // Først artist + album, så bare albumtittelen hvis det ikke ga treff
+    return search(artist + " " + album)
+      .then(function (url) { return url || search(album); })
+      .then(function (url) {
+        if (url) writeCache(key, url); // cache bare treff, så feil og bom prøves på nytt
         return url;
       })
-      .catch(function () {
-        return ""; // ikke cache feil, prøv igjen neste gang
+      .catch(function (e) {
+        console.info("[lastfm] iTunes-oppslag feilet", e);
+        return "";
       });
   }
 
