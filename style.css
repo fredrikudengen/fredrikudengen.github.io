@@ -295,6 +295,31 @@ a { color: var(--accent); }
   color: var(--accent);
 }
 
+/* Generativt mønster øverst i filmkortet (se patterns.js) */
+.review-pattern {
+  height: 120px;
+  margin-bottom: 16px;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  background: var(--paper-alt);
+  transition: background-color 0.25s ease;
+}
+.review-pattern svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.review-pattern path {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 0.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.review-card:hover .review-pattern {
+  background: var(--paper);
+}
+
 .review-card-meta,
 .review-card-date {
   margin: 0 0 4px;

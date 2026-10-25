@@ -37,6 +37,7 @@
     <p>© <span id="year"></span> Fredrik Udengen</p>
   </footer>
 
+  <script src="patterns.js"></script>
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
@@ -64,6 +65,13 @@
           var card = document.createElement("a");
           card.className = "review-card";
           card.href = "filmer/" + slug + ".html";
+
+          if (window.makePattern) {
+            var thumb = document.createElement("div");
+            thumb.className = "review-pattern";
+            thumb.appendChild(makePattern(entry.title, slug, entry.moenster));
+            card.appendChild(thumb);
+          }
 
           var h2 = document.createElement("h2");
           h2.textContent = entry.title;

@@ -40,7 +40,7 @@ CATEGORY_MAP = {
         "listing_file": "filmer.html",
         "listing_label": "Filmer",
         "meta_key": "movies",
-        "meta_fields": ["regissor", "aar", "dato"],
+        "meta_fields": ["regissor", "aar", "dato", "moenster"],
     },
 }
 
