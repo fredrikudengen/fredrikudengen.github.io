@@ -80,9 +80,29 @@
     return !!a && !!b && (a.indexOf(b) !== -1 || b.indexOf(a) !== -1);
   }
 
+  // MusicBrainz tillater maks ett kall i sekundet: kjør dem i kø med pause, og prøv én gang til ved 503
+  var mbChain = Promise.resolve();
+  function wait(ms) { return new Promise(function (res) { setTimeout(res, ms); }); }
+  function mbRequest(url) {
+    function once() {
+      return fetch(url).then(function (r) {
+        if (!r.ok) throw new Error("HTTP " + r.status);
+        return r.json();
+      });
+    }
+    var run = mbChain.then(function () {
+      return once().catch(function (e) {
+        if (String(e.message).indexOf("503") === -1) throw e;
+        return wait(2000).then(once);
+      });
+    });
+    mbChain = run.catch(function () {}).then(function () { return wait(1100); });
+    return run;
+  }
+
   // Reserve når Last.fm ikke har cover: iTunes Search (ingen nøkkel).
   // Godtar bare treff der både artist og albumtittel stemmer, så vi heller viser tom ramme enn feil cover.
-  function fallbackCover(artist, album) {
+  function fallbackCover(artist, album, mbid) {
     var key = "cover:" + norm(artist) + "|" + norm(album);
     var cached = readCache(key, COVER_CACHE_MS);
     if (cached) return Promise.resolve(cached.d);
@@ -144,11 +164,7 @@
     function musicBrainz() {
       var q = 'releasegroup:"' + album.replace(/"/g, "") + '" AND artist:"' + artist.replace(/"/g, "") + '"';
       var params = new URLSearchParams({ query: q, fmt: "json", limit: 5 });
-      return fetch("https://musicbrainz.org/ws/2/release-group/?" + params)
-        .then(function (r) {
-          if (!r.ok) throw new Error("HTTP " + r.status);
-          return r.json();
-        })
+      return mbRequest("https://musicbrainz.org/ws/2/release-group/?" + params)
         .then(function (d) {
           var hit = (d["release-groups"] || []).filter(function (g) {
             var credit = (g["artist-credit"] || []).map(function (c) { return c.name; }).join("");
@@ -175,6 +191,11 @@
         return "";
       })
       .then(attempt(catalog))
+      .then(function (url) {
+        // Last.fm oppgir noen ganger MusicBrainz-id-en til albumet: da trengs ikke noe søk
+        if (!url && mbid) return "https://coverartarchive.org/release/" + mbid + "/front-250";
+        return url;
+      })
       .then(attempt(musicBrainz))
       .then(function (url) {
         if (url) writeCache(key, url); // cache bare treff, så feil og bom prøves på nytt
@@ -259,7 +280,7 @@
       albumsEl.appendChild(li);
 
       function useFallback() {
-        fallbackCover(al.artist.name, al.name).then(function (u) { swapCover(li, u); });
+        fallbackCover(al.artist.name, al.name, al.mbid).then(function (u) { swapCover(li, u); });
       }
 
       var url = coverUrl(al.image);
