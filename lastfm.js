@@ -117,9 +117,65 @@
         });
     }
 
-    // Først artist + album, så bare albumtittelen hvis det ikke ga treff
+    // Henter hele artistens katalog i iTunes og leter etter albumet der
+    function catalog() {
+      var params = new URLSearchParams({
+        term: artist,
+        attribute: "artistTerm",
+        media: "music",
+        entity: "album",
+        limit: 200,
+      });
+      return fetch("https://itunes.apple.com/search?" + params)
+        .then(function (r) {
+          if (!r.ok) throw new Error("HTTP " + r.status);
+          return r.json();
+        })
+        .then(function (d) {
+          var hit = (d.results || []).filter(function (x) {
+            return related(norm(x.artistName), wantArtist) &&
+              related(norm(stripEdition(x.collectionName)), wantAlbum);
+          })[0];
+          return hit && hit.artworkUrl100 ? hit.artworkUrl100.replace("100x100bb", "200x200bb") : "";
+        });
+    }
+
+    // Siste utvei: MusicBrainz finner albumet, Cover Art Archive leverer coveret
+    function musicBrainz() {
+      var q = 'releasegroup:"' + album.replace(/"/g, "") + '" AND artist:"' + artist.replace(/"/g, "") + '"';
+      var params = new URLSearchParams({ query: q, fmt: "json", limit: 5 });
+      return fetch("https://musicbrainz.org/ws/2/release-group/?" + params)
+        .then(function (r) {
+          if (!r.ok) throw new Error("HTTP " + r.status);
+          return r.json();
+        })
+        .then(function (d) {
+          var hit = (d["release-groups"] || []).filter(function (g) {
+            var credit = (g["artist-credit"] || []).map(function (c) { return c.name; }).join("");
+            return related(norm(credit), wantArtist) && related(norm(stripEdition(g.title)), wantAlbum);
+          })[0];
+          return hit ? "https://coverartarchive.org/release-group/" + hit.id + "/front-250" : "";
+        });
+    }
+
+    function attempt(fn) {
+      return function (url) {
+        if (url) return url;
+        return fn().catch(function (e) {
+          console.info("[lastfm] cover-oppslag feilet", e);
+          return "";
+        });
+      };
+    }
+
+    // Først artist + album, så artistens hele katalog, så MusicBrainz
     return search(artist + " " + album)
-      .then(function (url) { return url || search(album); })
+      .catch(function (e) {
+        console.info("[lastfm] iTunes-søk feilet", e);
+        return "";
+      })
+      .then(attempt(catalog))
+      .then(attempt(musicBrainz))
       .then(function (url) {
         if (url) writeCache(key, url); // cache bare treff, så feil og bom prøves på nytt
         return url;
