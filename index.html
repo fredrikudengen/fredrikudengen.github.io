@@ -208,6 +208,34 @@
       </figure>
     </section>
 
+    <section class="music reveal" id="musikk">
+      <div class="music-inner">
+        <h2>Musikk</h2>
+        <p class="music-sub">Det jeg har hørt mest på, hentet fra
+          <a href="https://www.last.fm/user/Dengern" target="_blank" rel="noopener">Last.fm</a>.
+        </p>
+
+        <div class="music-periods" role="group" aria-label="Periode">
+          <button type="button" data-period="1month">1 mnd</button>
+          <button type="button" data-period="3month">3 mnd</button>
+          <button type="button" data-period="6month">6 mnd</button>
+          <button type="button" data-period="12month">12 mnd</button>
+        </div>
+
+        <div class="music-cols">
+          <div>
+            <h3>Album</h3>
+            <ol class="music-list" id="music-albums"></ol>
+          </div>
+          <div>
+            <h3>Sanger</h3>
+            <ol class="music-list" id="music-tracks"></ol>
+          </div>
+        </div>
+        <p class="music-status" id="music-status" aria-live="polite"></p>
+      </div>
+    </section>
+
     <!-- 5. INNSATS: bilde venstre, tekst høyre -->
     <section class="split reveal">
       <figure class="split-media">
@@ -272,6 +300,7 @@
   </footer>
  
   <script src="script.js"></script>
+  <script src="lastfm.js"></script>
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
  
