@@ -1,186 +1,18 @@
 {
   "books": {
-    "bhagavad-gita": {
-      "title": "Bhagavad Gita",
-      "forfatter": "flere forfattere",
-      "aar": "200 fvt.",
-      "dato": "23.02.2025"
-    },
-    "du-ma-ikke-sove": {
-      "title": "Du må ikke sove",
-      "forfatter": "Håvard Friis Nilsen",
-      "aar": "2024",
-      "dato": "31.01.2026"
-    },
-    "koke-bjorn": {
-      "title": "Koke bjørn",
-      "forfatter": "Mikael Niemi",
-      "aar": "2020",
-      "dato": "02.10.2024"
-    },
-    "maus-i-og-ii": {
-      "title": "Maus (I og II)",
-      "forfatter": "Art Spiegelman",
-      "aar": "1991",
-      "dato": "11.03.2024"
-    },
     "meditations": {
       "title": "Meditations",
       "forfatter": "Marcus Aurelius",
       "aar": "180 evt.",
       "dato": "22.06.2024"
-    },
-    "sapiens": {
-      "title": "Sapiens",
-      "forfatter": "Yuval Noah Harari",
-      "aar": "2011",
-      "dato": "29.02.2026"
-    },
-    "some-people-need-killing": {
-      "title": "Some people need killing",
-      "forfatter": "Patricia Evangelista",
-      "aar": "2023",
-      "dato": "11.09.2025"
     }
   },
   "movies": {
-    "affeksjonsverdi": {
-      "title": "Affeksjonsverdi",
-      "regissor": "Joachim Trier",
-      "aar": "2025",
-      "dato": "10.09.2025"
-    },
-    "birdman": {
-      "title": "Birdman",
-      "regissor": "Alejandro Iñárritu",
-      "aar": "2014",
-      "dato": "25.10.2024"
-    },
-    "come-and-see": {
-      "title": "Come and See",
-      "regissor": "Elem Klimov",
-      "aar": "1985",
-      "dato": "06.09.2021"
-    },
-    "dune-2": {
-      "title": "Dune 2",
-      "regissor": "Denis Villeneuve",
-      "aar": "2024",
-      "dato": "17.02.2024"
-    },
-    "elephant-man": {
-      "title": "Elephant man",
-      "regissor": "David Lynch",
-      "aar": "1980",
-      "dato": "02.04.2024"
-    },
-    "et-glass-til": {
-      "title": "Et glass til",
-      "regissor": "Thomas Vinterberg",
-      "aar": "2020",
-      "dato": "20.04.2022"
-    },
-    "fight-club": {
-      "title": "Fight Club",
-      "regissor": "David Fincher",
-      "aar": "1999",
-      "dato": "03.09.2022"
-    },
-    "hostsonaten": {
-      "title": "Høstsonaten",
-      "regissor": "Ingmar Bergman",
-      "aar": "1978",
-      "dato": "17.02.2025"
-    },
-    "magnolia": {
-      "title": "Magnolia",
-      "regissor": "Paul Thomas Anderson",
-      "aar": "1999",
-      "dato": "25.09.2024"
-    },
-    "memento": {
-      "title": "Memento",
-      "regissor": "Christopher Nolan",
-      "aar": "2000",
-      "dato": "17.04.2024"
-    },
-    "mulholland-drive": {
-      "title": "Mulholland Drive",
-      "regissor": "David Lynch",
-      "aar": "2001",
-      "dato": "17.01.2025"
-    },
-    "one-battle-after-another": {
-      "title": "One Battle After Another",
-      "regissor": "Paul Thomas Anderson",
-      "aar": "2025",
-      "dato": "28.09.2025"
-    },
-    "project-hail-mary": {
-      "title": "Project Hail Mary",
-      "regissor": "Phil Lord & Christopher Miller",
-      "aar": "2026",
-      "dato": "22.03.2026"
-    },
-    "quislings-siste-dager": {
-      "title": "Quislings siste dager",
-      "regissor": "Erik Poppe",
-      "aar": "2024",
-      "dato": "02.09.2024"
-    },
-    "se7en": {
-      "title": "Se7en",
-      "regissor": "David Fincher",
-      "aar": "1995",
-      "dato": "08.02.2024"
-    },
-    "synecdoche-new-york": {
-      "title": "Synecdoche, New York",
-      "regissor": "Charlie Kaufman",
-      "aar": "2008",
-      "dato": "13.12.2024"
-    },
     "the-brutalist": {
       "title": "The Brutalist",
       "regissor": "Brady Corbet",
       "aar": "2024",
       "dato": "06.03.2025"
-    },
-    "the-cremator": {
-      "title": "The Cremator",
-      "regissor": "Juraj Herz",
-      "aar": "1969",
-      "dato": "22.11.2023"
-    },
-    "the-lego-batman-movie": {
-      "title": "The Lego Batman Movie",
-      "regissor": "Chris McKay",
-      "aar": "2017",
-      "dato": "18.02.2024"
-    },
-    "the-lobster": {
-      "title": "The Lobster",
-      "regissor": "Yorgos Lanthimos",
-      "aar": "2015",
-      "dato": "01.04.2024"
-    },
-    "the-substance": {
-      "title": "The Substance",
-      "regissor": "Coralie Fargeat",
-      "aar": "2024",
-      "dato": "21.09.2025"
-    },
-    "whiplash": {
-      "title": "Whiplash",
-      "regissor": "Damien Chazelle",
-      "aar": "2014",
-      "dato": "08.01.2024"
-    },
-    "yi-yi": {
-      "title": "Yi Yi",
-      "regissor": "Edward Yang",
-      "aar": "2000",
-      "dato": "11.10.2024"
     },
     "digger": {
       "title": "Digger",
