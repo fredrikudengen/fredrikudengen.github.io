@@ -9,30 +9,31 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../style.css" />
   <meta name="description" content="Anmeldelse av Meditations · Fredrik Udengen" />
+  <script src="../lang.js"></script>
 </head>
 <body>
   <header class="site-header">
     <div class="topbar">
       <a class="brand" href="../index.html">Fredrik Udengen</a>
       <nav class="nav">
-        <a href="../projects.html">Prosjekter</a>
-        <a href="../boker.html">Bøker</a>
-        <a href="../filmer.html">Filmer</a>
+        <a href="../projects.html"><span lang="no">Prosjekter</span><span lang="en">Projects</span></a>
+        <a href="../boker.html"><span lang="no">Bøker</span><span lang="en">Books</span></a>
+        <a href="../filmer.html"><span lang="no">Filmer</span><span lang="en">Films</span></a>
         <a href="https://www.linkedin.com/in/fredrik-udengen-87272a143/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="mailto:fredrikudengen@proton.me">Kontakt</a>
+        <a href="mailto:fredrikudengen@proton.me"><span lang="no">Kontakt</span><span lang="en">Contact</span></a>
       </nav>
     </div>
 
     <section class="page-hero reveal">
-      <a class="breadcrumb" href="../boker.html">&larr; Bøker</a>
+      <a class="breadcrumb" href="../boker.html">&larr; <span lang="no">Bøker</span><span lang="en">Books</span></a>
       <h1>Meditations</h1>
-      <div class="chips review-meta" id="review-meta" aria-label="Detaljer"></div>
+      <div class="chips review-meta" id="review-meta" aria-label="Detaljer" data-en-aria-label="Details"></div>
     </section>
   </header>
 
   <main class="content">
     <section class="card reveal" id="review-body">
-      <p class="subtitle">Laster anmeldelse&hellip;</p>
+      <p class="subtitle"><span lang="no">Laster anmeldelse&hellip;</span><span lang="en">Loading review&hellip;</span></p>
     </section>
   </main>
 
@@ -42,40 +43,8 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
-    fetch("../resources/books/meditations.html")
-      .then((r) => r.text())
-      .then((htmlText) => {
-        document.getElementById("review-body").innerHTML = htmlText;
-      })
-      .catch(() => {
-        document.getElementById("review-body").innerHTML =
-          "<p>Kunne ikke laste anmeldelsen.</p>";
-      });
-
-    fetch("../resources/meta.json")
-      .then((r) => r.json())
-      .then((meta) => {
-        var entry = (meta["books"] || {})["meditations"];
-        if (!entry) return;
-        var labels = {
-          forfatter: "Forfatter",
-          regissor: "Regissør",
-          aar: "År",
-          dato: "Lest/sett",
-        };
-        var order = ["forfatter", "regissor", "aar", "dato"];
-        var el = document.getElementById("review-meta");
-        order.forEach(function (key) {
-          var value = entry[key];
-          if (!value) return;
-          var span = document.createElement("span");
-          span.className = "chip";
-          span.textContent = (key === "aar" ? value : labels[key] + ": " + value);
-          el.appendChild(span);
-        });
-      })
-      .catch(function () {});
   </script>
+  <script src="../review.js" data-kind="books" data-slug="meditations"></script>
   <script src="../script.js"></script>
 </body>
 </html>

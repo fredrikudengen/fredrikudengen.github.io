@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="no">
+<html lang="no" data-en-title="Films · Fredrik Udengen">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,23 +9,25 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <meta name="description" content="Filmer · Fredrik Udengen" />
+  <script src="lang.js"></script>
 </head>
 <body>
   <header class="site-header">
     <div class="topbar">
       <a class="brand" href="index.html">Fredrik Udengen</a>
       <nav class="nav">
-        <a href="index.html">Om meg</a>
-        <a href="projects.html">Prosjekter</a>
-        <a href="boker.html">Bøker</a>
+        <a href="index.html"><span lang="no">Om meg</span><span lang="en">About me</span></a>
+        <a href="projects.html"><span lang="no">Prosjekter</span><span lang="en">Projects</span></a>
+        <a href="boker.html"><span lang="no">Bøker</span><span lang="en">Books</span></a>
         <a href="https://www.linkedin.com/in/fredrik-udengen-87272a143/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="mailto:fredrikudengen@proton.me">Kontakt</a>
+        <a href="mailto:fredrikudengen@proton.me"><span lang="no">Kontakt</span><span lang="en">Contact</span></a>
       </nav>
     </div>
 
     <section class="page-hero reveal">
-      <h1>Filmer</h1>
-      <p class="subtitle">Noen film-"anmeldelser" jeg har skrevet. Jeg jobber med å rettskrive de jeg har skrevet...</p>
+      <h1><span lang="no">Filmer</span><span lang="en">Films</span></h1>
+      <p class="subtitle" lang="no">Noen film-"anmeldelser" jeg har skrevet. Jeg jobber med å rettskrive de jeg har skrevet...</p>
+      <p class="subtitle" lang="en">Some film "reviews" I've written. I'm working on proofreading the ones I've written...</p>
     </section>
   </header>
 
@@ -87,7 +89,7 @@
           if (entry.dato) {
             var pDato = document.createElement("p");
             pDato.className = "review-card-date";
-            pDato.textContent = "Skrevet " + entry.dato;
+            pDato.appendChild(siteLang.text("Skrevet " + entry.dato, "Written " + entry.dato));
             card.appendChild(pDato);
           }
 
@@ -96,7 +98,7 @@
       })
       .catch(function () {
         document.getElementById("review-grid").innerHTML =
-          "<p>Kunne ikke laste anmeldelser.</p>";
+          '<p lang="no">Kunne ikke laste anmeldelser.</p><p lang="en">Could not load reviews.</p>';
       });
   </script>
   <script src="script.js"></script>

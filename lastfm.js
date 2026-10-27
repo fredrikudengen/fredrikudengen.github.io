@@ -254,7 +254,7 @@
 
     var count = document.createElement("span");
     count.className = "music-plays";
-    count.textContent = plays + " avspillinger";
+    count.appendChild(window.siteLang.text(plays + " avspillinger", plays + " plays"));
     li.appendChild(count);
 
     return li;
@@ -300,9 +300,14 @@
     });
   }
 
+  function setStatus(no, en) {
+    statusEl.textContent = "";
+    if (no) statusEl.appendChild(window.siteLang.text(no, en));
+  }
+
   function load(period) {
     var id = ++requestId;
-    statusEl.textContent = "Henter fra Last.fm…";
+    setStatus("Henter fra Last.fm…", "Loading from Last.fm…");
     root.classList.add("is-loading");
 
     Promise.all([call("user.gettopalbums", period), call("user.gettoptracks", period)])
@@ -310,12 +315,12 @@
         if (id !== requestId) return; // et nyere valg har tatt over
         renderAlbums(res[0]);
         renderTracks(res[1]);
-        statusEl.textContent = "";
+        setStatus("", "");
         root.classList.remove("is-loading");
       })
       .catch(function () {
         if (id !== requestId) return;
-        statusEl.textContent = "Kunne ikke hente musikk akkurat nå.";
+        setStatus("Kunne ikke hente musikk akkurat nå.", "Could not load music right now.");
         root.classList.remove("is-loading");
       });
   }

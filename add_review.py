@@ -4,6 +4,7 @@
 Bruk:
     python3 add_review.py "/path/til/Tittel.md" bok
     python3 add_review.py "/path/til/Tittel.md" film
+    python3 add_review.py "/path/til/Tittel.md" bok en   (engelsk oversettelse)
 
 Gjør fire ting, uten å røre eksisterende innhold:
   1. Konverterer .md -> resources/<books|movies>/<slug>.html
@@ -11,6 +12,10 @@ Gjør fire ting, uten å røre eksisterende innhold:
   3. Setter inn et nytt kort i boker.html / filmer.html (alfabetisk)
   4. Legger til en tom oppføring i resources/meta.json for slugen
      (overskriver ikke eksisterende oppføringer)
+
+Med "en" til slutt skrives bare resources/<books|movies>/<slug>.en.html, som
+anmeldelsessiden viser når engelsk er valgt. Filnavnet må gi samme slug som den
+norske anmeldelsen (f.eks. "Digger.md"), og den norske må finnes fra før.
 """
 import json
 import os
@@ -31,6 +36,7 @@ CATEGORY_MAP = {
         "page_dir": "boker",
         "listing_file": "boker.html",
         "listing_label": "Bøker",
+        "listing_label_en": "Books",
         "meta_key": "books",
         "meta_fields": ["forfatter", "aar", "dato", "moenster"],
     },
@@ -39,6 +45,7 @@ CATEGORY_MAP = {
         "page_dir": "filmer",
         "listing_file": "filmer.html",
         "listing_label": "Filmer",
+        "listing_label_en": "Films",
         "meta_key": "movies",
         "meta_fields": ["regissor", "aar", "dato", "moenster"],
     },
@@ -101,11 +108,11 @@ def convert_markdown(src_text):
 
 
 NAV = """      <nav class="nav">
-        <a href="../projects.html">Prosjekter</a>
-        <a href="../boker.html">Bøker</a>
-        <a href="../filmer.html">Filmer</a>
+        <a href="../projects.html"><span lang="no">Prosjekter</span><span lang="en">Projects</span></a>
+        <a href="../boker.html"><span lang="no">Bøker</span><span lang="en">Books</span></a>
+        <a href="../filmer.html"><span lang="no">Filmer</span><span lang="en">Films</span></a>
         <a href="https://www.linkedin.com/in/fredrik-udengen-87272a143/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="mailto:fredrikudengen@proton.me">Kontakt</a>
+        <a href="mailto:fredrikudengen@proton.me"><span lang="no">Kontakt</span><span lang="en">Contact</span></a>
       </nav>"""
 
 REVIEW_PAGE = """<!DOCTYPE html>
@@ -119,6 +126,7 @@ REVIEW_PAGE = """<!DOCTYPE html>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../style.css" />
   <meta name="description" content="Anmeldelse av {title_attr} · Fredrik Udengen" />
+  <script src="../lang.js"></script>
 </head>
 <body>
   <header class="site-header">
@@ -128,15 +136,15 @@ REVIEW_PAGE = """<!DOCTYPE html>
     </div>
 
     <section class="page-hero reveal">
-      <a class="breadcrumb" href="../{listing_file}">&larr; {listing_label}</a>
+      <a class="breadcrumb" href="../{listing_file}">&larr; <span lang="no">{listing_label}</span><span lang="en">{listing_label_en}</span></a>
       <h1>{title}</h1>
-      <div class="chips review-meta" id="review-meta" aria-label="Detaljer"></div>
+      <div class="chips review-meta" id="review-meta" aria-label="Detaljer" data-en-aria-label="Details"></div>
     </section>
   </header>
 
   <main class="content">
     <section class="card reveal" id="review-body">
-      <p class="subtitle">Laster anmeldelse&hellip;</p>
+      <p class="subtitle"><span lang="no">Laster anmeldelse&hellip;</span><span lang="en">Loading review&hellip;</span></p>
     </section>
   </main>
 
@@ -146,44 +154,26 @@ REVIEW_PAGE = """<!DOCTYPE html>
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
-    fetch("../resources/{resource_dir}/{slug}.html")
-      .then((r) => r.text())
-      .then((htmlText) => {{
-        document.getElementById("review-body").innerHTML = htmlText;
-      }})
-      .catch(() => {{
-        document.getElementById("review-body").innerHTML =
-          "<p>Kunne ikke laste anmeldelsen.</p>";
-      }});
-
-    fetch("../resources/meta.json")
-      .then((r) => r.json())
-      .then((meta) => {{
-        var entry = (meta["{meta_key}"] || {{}})["{slug}"];
-        if (!entry) return;
-        var labels = {{
-          forfatter: "Forfatter",
-          regissor: "Regissør",
-          aar: "År",
-          dato: "Lest/sett",
-        }};
-        var order = ["forfatter", "regissor", "aar", "dato"];
-        var el = document.getElementById("review-meta");
-        order.forEach(function (key) {{
-          var value = entry[key];
-          if (!value) return;
-          var span = document.createElement("span");
-          span.className = "chip";
-          span.textContent = (key === "aar" ? value : labels[key] + ": " + value);
-          el.appendChild(span);
-        }});
-      }})
-      .catch(function () {{}});
   </script>
+  <script src="../review.js" data-kind="{meta_key}" data-slug="{slug}"></script>
   <script src="../script.js"></script>
 </body>
 </html>
 """
+
+
+def render_review_page(cfg, title, slug):
+    return REVIEW_PAGE.format(
+        title=title,
+        title_attr=title.replace('"', "&quot;"),
+        nav=NAV,
+        listing_file=cfg["listing_file"],
+        listing_label=cfg["listing_label"],
+        listing_label_en=cfg["listing_label_en"],
+        meta_key=cfg["meta_key"],
+        slug=slug,
+    )
+
 
 def update_meta(meta_path, meta_key, meta_fields, slug, title):
     with open(meta_path, encoding="utf-8") as f:
@@ -201,11 +191,12 @@ def update_meta(meta_path, meta_key, meta_fields, slug, title):
 
 
 def main():
-    if len(sys.argv) != 3:
+    if len(sys.argv) not in (3, 4) or (len(sys.argv) == 4 and sys.argv[3].lower() != "en"):
         print(__doc__)
         sys.exit(1)
 
     md_path, category = sys.argv[1], sys.argv[2].lower()
+    english = len(sys.argv) == 4
     if category not in CATEGORY_MAP:
         print(f"Ukjent kategori '{category}'. Bruk 'bok' eller 'film'.")
         sys.exit(1)
@@ -221,21 +212,23 @@ def main():
         source = f.read()
     converted = convert_markdown(source)
 
+    if english:
+        no_path = os.path.join(SITE_ROOT, "resources", cfg["resource_dir"], f"{slug}.html")
+        if not os.path.isfile(no_path):
+            print(f"Fant ingen norsk anmeldelse med slug '{slug}' ({no_path}). Sjekk filnavnet.")
+            sys.exit(1)
+        en_path = os.path.join(SITE_ROOT, "resources", cfg["resource_dir"], f"{slug}.en.html")
+        with open(en_path, "w", encoding="utf-8") as f:
+            f.write(converted)
+        print(f"Skrev {en_path}")
+        return
+
     resource_path = os.path.join(SITE_ROOT, "resources", cfg["resource_dir"], f"{slug}.html")
     with open(resource_path, "w", encoding="utf-8") as f:
         f.write(converted)
     print(f"Skrev {resource_path}")
 
-    page_html = REVIEW_PAGE.format(
-        title=title,
-        title_attr=title.replace('"', "&quot;"),
-        nav=NAV,
-        listing_file=cfg["listing_file"],
-        listing_label=cfg["listing_label"],
-        resource_dir=cfg["resource_dir"],
-        meta_key=cfg["meta_key"],
-        slug=slug,
-    )
+    page_html = render_review_page(cfg, title, slug)
     page_path = os.path.join(SITE_ROOT, cfg["page_dir"], f"{slug}.html")
     with open(page_path, "w", encoding="utf-8") as f:
         f.write(page_html)

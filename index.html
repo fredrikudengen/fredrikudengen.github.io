@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="no" class="snap-page">
+<html lang="no" class="snap-page" data-en-title="Fredrik Udengen">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <script src="lang.js"></script>
   <meta name="description" content="Fredrik Udengen, masterstudent i programvareutvikling (UiB/HVL). Prosjekter, bokanmeldelser og filmanmeldelser." />
 </head>
 <body>
@@ -15,22 +16,22 @@
     <div class="topbar">
       <a class="brand" href="/">Fredrik Udengen</a>
       <nav class="nav">
-        <a href="projects.html">Prosjekter</a>
-        <a href="boker.html">Bøker</a>
-        <a href="filmer.html">Filmer</a>
+        <a href="projects.html"><span lang="no">Prosjekter</span><span lang="en">Projects</span></a>
+        <a href="boker.html"><span lang="no">Bøker</span><span lang="en">Books</span></a>
+        <a href="filmer.html"><span lang="no">Filmer</span><span lang="en">Films</span></a>
         <a href="https://www.linkedin.com/in/fredrik-udengen-87272a143/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="mailto:fredrikudengen@proton.me">Kontakt</a>
+        <a href="mailto:fredrikudengen@proton.me"><span lang="no">Kontakt</span><span lang="en">Contact</span></a>
       </nav>
     </div>
   </header>
 
   <!-- LANDING: bilde fra museum, tekst plassert i maleriets ramme (desktop) -->
-  <section class="landing" aria-label="Introduksjon">
+  <section class="landing" aria-label="Introduksjon" data-en-aria-label="Introduction">
     <div class="landing-stage">
       <img
         class="landing-img"
         src="img/museum.jpg"
-        alt="Fredrik står i et museum og ser på et stort maleri av en karavane i ørkenen"
+        alt="Fredrik står i et museum og ser på et stort maleri av en karavane i ørkenen" data-en-alt="Fredrik standing in a museum looking at a large painting of a caravan in the desert"
         width="2560"
         height="1920"
         fetchpriority="high"
@@ -38,12 +39,13 @@
       />
       <div class="plane-bg" aria-hidden="true"></div>
       <div class="plane">
-        <h1 class="plane-title">Velkommen til nettsiden min!</h1>
+        <h1 class="plane-title"><span lang="no">Velkommen til nettsiden min!</span><span lang="en">Welcome to my website!</span></h1>
         <div class="plane-panel">
-          <p class="plane-tagline">Her kan du lese litt om meg og prosjektene mine.</p>
+          <p class="plane-tagline" lang="no">Her kan du lese litt om meg og prosjektene mine.</p>
+          <p class="plane-tagline" lang="en">Here you can read a bit about me and my projects.</p>
           <div class="cta">
-            <a class="button" href="projects.html">Se prosjekter</a>
-            <a class="button ghost" href="mailto:fredrikudengen@proton.me">Ta kontakt</a>
+            <a class="button" href="projects.html"><span lang="no">Se prosjekter</span><span lang="en">See projects</span></a>
+            <a class="button ghost" href="mailto:fredrikudengen@proton.me"><span lang="no">Ta kontakt</span><span lang="en">Get in touch</span></a>
           </div>
         </div>
       </div>
@@ -58,23 +60,31 @@
         <img
           class="split-photo"
           src="img/pekka.JPG"
-          alt="Fredrik foran P.E.K.K.A.-statuen utenfor Supercell i Helsinki"
+          alt="Fredrik foran P.E.K.K.A.-statuen utenfor Supercell i Helsinki" data-en-alt="Fredrik in front of the P.E.K.K.A. statue outside Supercell in Helsinki"
           width="900"
           height="1200"
           loading="lazy"
           onerror="handleMediaError(this)"
         />
-        <figcaption>Utenfor Supercell (Clash of Clans, Clash Royale) HQ i Helsinki</figcaption>
+        <figcaption><span lang="no">Utenfor Supercell (Clash of Clans, Clash Royale) HQ i Helsinki</span><span lang="en">Outside the Supercell (Clash of Clans, Clash Royale) HQ in Helsinki</span></figcaption>
       </figure>
       <div class="split-text">
-        <h2>Om meg</h2>
-        <p>Hei, jeg er Fredrik. Jeg liker å bygge ting og forstå dem helt fra bunnen, og hvordan folk faktisk bruker dem. Veien hit har gått 
+        <h2><span lang="no">Om meg</span><span lang="en">About me</span></h2>
+        <p lang="no">Hei, jeg er Fredrik. Jeg liker å bygge ting og forstå dem helt fra bunnen, og hvordan folk faktisk bruker dem. Veien hit har gått 
           via kognitiv vitenskap, som ga meg et nytt syn på mennesker: hvordan vi tenker, hvordan vi ser på et problem, og hvorfor
           vi gjør som vi gjør. Det tar jeg med meg inn i alt jeg lager. Et system som jobber mot 
           hvordan mennesker faktisk fungerer, er et dårlig system.
         </p>
-        <p>Utenom koding leser jeg, ser litt film og skriver ned tankene mine. Her kan du lese dem:
+        <p lang="en">Hi, I'm Fredrik. I like building things and understanding them from the ground up, and how people actually
+          use them. My path here went through cognitive science, which gave me a new view of people: how we think, how we look at a
+          problem, and why we do what we do. I bring that into everything I make. A system that works against
+          how people actually function is a bad system.
+        </p>
+        <p lang="no">Utenom koding leser jeg, ser litt film og skriver ned tankene mine. Her kan du lese dem:
           <a href="boker.html">Bøker</a> og <a href="filmer.html">Filmer</a>.
+        </p>
+        <p lang="en">Outside of coding I read, watch some films and write down my thoughts. You can read them here:
+          <a href="boker.html">Books</a> and <a href="filmer.html">Films</a>.
         </p>
       </div>
     </section>
@@ -82,16 +92,25 @@
     <!-- 1b. HVA JEG HOLDER PÅ MED NÅ: kort tekstseksjon, oppdateres jevnlig -->
     <section class="now reveal" id="na">
       <div class="now-inner">
-        <h2>Hva jeg holder på med nå</h2>
-        <p class="now-updated">Sist oppdatert <time datetime="2026-10">oktober 2026</time></p>
-        <p>Jeg tar master i programvareutvikling ved UiB og HVL. Akkurat nå bygger jeg et læringssystem fra bunnen av,
+        <h2><span lang="no">Hva jeg holder på med nå</span><span lang="en">What I'm doing now</span></h2>
+        <p class="now-updated" lang="no">Sist oppdatert <time datetime="2026-10">oktober 2026</time></p>
+        <p class="now-updated" lang="en">Last updated <time datetime="2026-10">October 2026</time></p>
+        <p lang="no">Jeg tar master i programvareutvikling ved UiB og HVL. Akkurat nå bygger jeg et læringssystem fra bunnen av,
           med Java, REST, Postgres og RabbitMQ, og lærer i praksis hvordan alle delene må henge sammen.
         </p>
-        <p>I helseinformatikk ser jeg på alt som omgir selve koden: regulering, standarder, brukere, tid og 
+        <p lang="en">I'm doing a master's in software development at UiB and HVL. Right now I'm building a learning system from scratch,
+          with Java, REST, Postgres and RabbitMQ, and learning first-hand how all the parts have to fit together.
+        </p>
+        <p lang="no">I helseinformatikk ser jeg på alt som omgir selve koden: regulering, standarder, brukere, tid og 
           penger. Der skriver jeg også en oppgave om hvordan mennesker og AI kan samarbeide om å lese mammografibilder (brystkreft). 
           Det gjør det tydelig at et system handler like mye om menneskene som bruker det som om teknologien.
         </p>
-        <p>I tillegg jobber jeg med algoritmer, og der holder det ikke at en løsning virker. Jeg vil også vite hva den koster.</p>
+        <p lang="en">In health informatics I'm looking at everything that surrounds the code itself: regulation, standards, users, time and
+          money. There I'm also writing a paper on how humans and AI can work together to read mammograms (breast cancer).
+          It makes it clear that a system is as much about the people who use it as about the technology.
+        </p>
+        <p lang="no">I tillegg jobber jeg med algoritmer, og der holder det ikke at en løsning virker. Jeg vil også vite hva den koster.</p>
+        <p lang="en">In addition I'm working on algorithms, and there it isn't enough that a solution works. I also want to know what it costs.</p>
       </div>
     </section>
 
@@ -108,27 +127,39 @@
           playsinline
           preload="metadata"
           poster="img/rr2-poster.jpg"
-          aria-label="Resten Ringer 2: spillklipp"
+          aria-label="Resten Ringer 2: spillklipp" data-en-aria-label="Resten Ringer 2: gameplay clip"
           onerror="handleMediaError(this)"
         >
           <source src="img/rr2.webm" type="video/webm" />
           <source src="img/rr2.mp4" type="video/mp4" />
         </video>
-        <figcaption>PS: Tillat video autoplay for å se spillet i aksjon!</figcaption>
+        <figcaption><span lang="no">PS: Tillat video autoplay for å se spillet i aksjon!</span><span lang="en">PS: Allow video autoplay to see the game in action!</span></figcaption>
       </figure>
       <div class="project-text">
-        <h2>Resten Ringer 2 <span class="status wip">Pågående</span></h2>
+        <h2>Resten Ringer 2 <span class="status wip"><span lang="no">Pågående</span><span lang="en">In progress</span></span></h2>
         <p class="chips"><span class="chip">Python</span><span class="chip">Pygame</span></p>
-        <p>Selv om jeg lærte mye på studiet, ville jeg prøve meg på egenhånd. Resten Ringer 2 er oppfølgeren til et
+        <p lang="no">Selv om jeg lærte mye på studiet, ville jeg prøve meg på egenhånd. Resten Ringer 2 er oppfølgeren til et
           spill en venninne og jeg lagde sammen på studiet, men denne gangen bygger jeg det selv, inspirert av Enter the Gungeon og
           The Binding of Isaac.
         </p>
-        <p>Det morsomste er å få fiender til å oppføre seg smart. Foreløpig har jeg fire atferder: gå mot spilleren,
+        <p lang="en">Even though I learned a lot at university, I wanted to try something on my own. Resten Ringer 2 is the sequel to a
+          game a friend and I made together at university, but this time I'm building it myself, inspired by Enter the Gungeon and
+          The Binding of Isaac.
+        </p>
+        <p lang="no">Det morsomste er å få fiender til å oppføre seg smart. Foreløpig har jeg fire atferder: gå mot spilleren,
           gå mot spilleren og stoppe opp for å slå, hoppe mot spilleren fra avstand, og skyte. Den som skyter må først
           finne en skytebane. Den går med A* til den har fri sikt, som sjekkes med
           <a href="https://en.wikipedia.org/wiki/Bresenham's_line_algorithm" target="_blank" rel="noopener">Bresenhams linjealgoritme</a>,
           og skyter så mot midten av spilleren. Hver ny idé starter med det samme spørsmålet: «Det hadde vært kult, men
           hvordan skal jeg implementere det?» Koden ligger åpen på
+          <a href="https://github.com/fredrikudengen/Resten-Ringer-2" target="_blank" rel="noopener">GitHub</a>.
+        </p>
+        <p lang="en">The most fun part is getting enemies to behave intelligently. So far I have four behaviours: walk towards the player,
+          walk towards the player and stop to strike, leap at the player from a distance, and shoot. The one that shoots first has to
+          find a firing line. It moves using A* until it has a clear line of sight, which is checked with
+          <a href="https://en.wikipedia.org/wiki/Bresenham's_line_algorithm" target="_blank" rel="noopener">Bresenham's line algorithm</a>,
+          and then fires at the centre of the player. Every new idea starts with the same question: "That would be cool, but
+          how am I going to implement it?" The code is open on
           <a href="https://github.com/fredrikudengen/Resten-Ringer-2" target="_blank" rel="noopener">GitHub</a>.
         </p>
       </div>
@@ -140,34 +171,52 @@
         <img
           class="project-shot"
           src="img/studiekart-graf.png"
-          alt="Kunnskapsgrafen til Web-Design i StudieKart, med temaer og avhengigheter mellom dem"
+          alt="Kunnskapsgrafen til Web-Design i StudieKart, med temaer og avhengigheter mellom dem" data-en-alt="The knowledge graph for Web Design in StudieKart, showing topics and the dependencies between them"
           width="1200"
           height="800"
           loading="lazy"
           onerror="handleMediaError(this)"
         />
-        <figcaption>Kunnskapsgrafen for Web-Design</figcaption>
+        <figcaption><span lang="no">Kunnskapsgrafen for Web-Design</span><span lang="en">The knowledge graph for Web Design</span></figcaption>
       </figure>
       <div class="project-text">
         <h2>StudieKart</h2>
         <p class="chips"><span class="chip">React</span><span class="chip">FastAPI</span><span class="chip">PostgreSQL</span><span class="chip">Docker</span><span class="chip">Claude Code</span></p>
-        <p>StudieKart er en webapp som hjelper studenter å se hva de kan og ikke kan i et emne. Jeg bygde den fordi
+        <p lang="no">StudieKart er en webapp som hjelper studenter å se hva de kan og ikke kan i et emne. Jeg bygde den fordi
           jeg ville teste agentisk koding, og fordi jeg ville ha noe jeg selv kunne bruke: en oversikt over kunnskapen
           min og hva jeg bør jobbe med videre.
         </p>
-        <p>Man forteller hvilket emne man vil teste og laster opp pensum, så lager Claude adaptive tester ut fra det. Man får også
+        <p lang="en">StudieKart is a web app that helps students see what they know and don't know in a course. I built it because
+          I wanted to try agentic coding, and because I wanted something I could use myself: an overview of my own knowledge
+          and what I should work on next.
+        </p>
+        <p lang="no">Man forteller hvilket emne man vil teste og laster opp pensum, så lager Claude adaptive tester ut fra det. Man får også
           se en kunnskapsgraf som viser hvordan temaene henger sammen. Testene bruker spaced repetition slik at man holder 
           kunnskapen ved like. Det er både flervalg og fritekst, og Claude vurderer fritekstsvarene.
         </p>
-        <p>Å bruke agentisk utvikling er å løfte programmeringsspråket opp til norsk, men du må fortsatt kunne forklare hva du
+        <p lang="en">You tell it which course you want to be tested on and upload the syllabus, and Claude creates adaptive tests from it. You also
+          get a knowledge graph that shows how the topics connect. The tests use spaced repetition so you keep
+          the knowledge fresh. There are both multiple-choice and free-text questions, and Claude grades the free-text answers.
+        </p>
+        <p lang="no">Å bruke agentisk utvikling er å løfte programmeringsspråket opp til norsk, men du må fortsatt kunne forklare hva du
           vil oppnå og hvordan. En god prompt har en retning og en konkret idé til implementasjon. Språkmodeller er ikke perfekte, 
           og dårlig implementasjon kan koste, så man må være kritisk.
         </p>
-        <p class="links-row">
+        <p lang="en">Agentic development lifts the programming language up to plain English, but you still have to be able to explain what you
+          want to achieve and how. A good prompt has a direction and a concrete idea for the implementation. Language models aren't perfect,
+          and a poor implementation can be costly, so you have to stay critical.
+        </p>
+        <p class="links-row" lang="no">
           <a href="https://studiekart.onrender.com/" target="_blank" rel="noopener">Prøv den live</a>
           (kan bruke et minutt på å våkne)
           · <a href="https://github.com/fredrikudengen/StudieKart" target="_blank" rel="noopener">Kildekode</a>
           · <a href="projects.html">Alle prosjekter</a>
+        </p>
+        <p class="links-row" lang="en">
+          <a href="https://studiekart.onrender.com/" target="_blank" rel="noopener">Try it live</a>
+          (may take a minute to wake up)
+          · <a href="https://github.com/fredrikudengen/StudieKart" target="_blank" rel="noopener">Source code</a>
+          · <a href="projects.html">All projects</a>
         </p>
       </div>
     </section>
@@ -175,60 +224,77 @@
     <!-- 3. KUNST/KULTUR: tekst venstre, bilde høyre -->
     <section class="split split--reverse reveal">
       <div class="split-text">
-        <h2>Kunst og kultur</h2>
-        <p>Jeg bruker bøker og film til å stille spørsmål, både om samfunnet og om meg selv. På den måten utforsker jeg 
+        <h2><span lang="no">Kunst og kultur</span><span lang="en">Art and culture</span></h2>
+        <p lang="no">Jeg bruker bøker og film til å stille spørsmål, både om samfunnet og om meg selv. På den måten utforsker jeg 
           hva jeg selv mener, litt som Sokrates før han ble henrettet. I <a href="boker/meditations.html">«Meditations»</a> 
           av Marcus Aurelius var det spesielt ett spørsmål jeg ble igjen sittende med: er målene mine noe jeg faktisk vil, 
           eller noe andre vil for meg? 
         </p>
-        <p>Spørsmål uten noen klar fasit liker jeg best. «Consider the Lobster» av David Foster Wallace, en annen bok 
+        <p lang="en">I use books and film to ask questions, both about society and about myself. That's how I work out
+          what I actually think, a bit like Socrates before he was executed. In <a href="boker/meditations.html">"Meditations"</a>
+          by Marcus Aurelius there was one question in particular that stayed with me: are my goals something I actually want,
+          or something others want for me?
+        </p>
+        <p lang="no">Spørsmål uten noen klar fasit liker jeg best. «Consider the Lobster» av David Foster Wallace, en annen bok 
           jeg liker veldig godt, er en samling av essayer uten noen felles tråd bortsett fra at alle vil utforske, spørre og 
           kanskje finne svar. Det er sånn jeg selv prøver å leve.
         </p>
-        <p>Bildet er Duchamps «Fountain» på Tate Modern, et pissoar som ble stilt ut i et galleri. Er det kunst, hvorfor? Hvorfor ikke?
+        <p lang="en">Questions without a clear answer are the ones I like best. "Consider the Lobster" by David Foster Wallace, another book
+          I like a lot, is a collection of essays with no common thread except that they all want to explore, ask and
+          maybe find answers. That's how I try to live myself.
+        </p>
+        <p lang="no">Bildet er Duchamps «Fountain» på Tate Modern, et pissoar som ble stilt ut i et galleri. Er det kunst, hvorfor? Hvorfor ikke?
           Det minner meg om noe jeg tenkte på mens jeg så
           <a href="filmer/the-brutalist.html">The Brutalist</a>: folk kaller brutalisme stygt og avskriver det som arkitektur. Men mister
           vi ikke da noe som kan ligge dypere? Noe som kan reflektere noe mer enn bare skjønnhet?
         </p>
+        <p lang="en">The picture is Duchamp's "Fountain" at Tate Modern, a urinal that was exhibited in a gallery. Is it art? Why? Why not?
+          It reminds me of something I was thinking about while watching
+          <a href="filmer/the-brutalist.html">The Brutalist</a>: people call brutalism ugly and dismiss it as architecture. But don't
+          we lose something that might run deeper? Something that can reflect more than just beauty?
+        </p>
         <p class="links-row">
-          <a href="boker.html">Bøker</a> · <a href="filmer.html">Filmer</a>
+          <a href="boker.html"><span lang="no">Bøker</span><span lang="en">Books</span></a> · <a href="filmer.html"><span lang="no">Filmer</span><span lang="en">Films</span></a>
         </p>
       </div>
       <figure class="split-media">
         <img
           class="split-photo split-photo--full"
           src="img/fountain.JPG"
-          alt="Marcel Duchamps «Fountain» utstilt på Tate Modern"
+          alt="Marcel Duchamps «Fountain» utstilt på Tate Modern" data-en-alt="Marcel Duchamp's "Fountain" on display at Tate Modern"
           width="1536"
           height="2048"
           loading="lazy"
           onerror="handleMediaError(this)"
         />
-        <figcaption>Duchamps «Fountain» på Tate Modern</figcaption>
+        <figcaption><span lang="no">Duchamps «Fountain» på Tate Modern</span><span lang="en">Duchamp's "Fountain" at Tate Modern</span></figcaption>
       </figure>
     </section>
 
     <section class="music reveal" id="musikk">
       <div class="music-inner">
-        <h2>Musikk</h2>
-        <p class="music-sub">Det jeg har hørt mest på, hentet fra
+        <h2><span lang="no">Musikk</span><span lang="en">Music</span></h2>
+        <p class="music-sub" lang="no">Det jeg har hørt mest på, hentet fra
+          <a href="https://www.last.fm/user/Dengern" target="_blank" rel="noopener">Last.fm</a>.
+        </p>
+        <p class="music-sub" lang="en">What I've listened to the most, pulled from
           <a href="https://www.last.fm/user/Dengern" target="_blank" rel="noopener">Last.fm</a>.
         </p>
 
-        <div class="music-periods" role="group" aria-label="Periode">
-          <button type="button" data-period="1month">1 mnd</button>
-          <button type="button" data-period="3month">3 mnd</button>
-          <button type="button" data-period="6month">6 mnd</button>
-          <button type="button" data-period="12month">12 mnd</button>
+        <div class="music-periods" role="group" aria-label="Periode" data-en-aria-label="Period">
+          <button type="button" data-period="1month"><span lang="no">1 mnd</span><span lang="en">1 mo</span></button>
+          <button type="button" data-period="3month"><span lang="no">3 mnd</span><span lang="en">3 mo</span></button>
+          <button type="button" data-period="6month"><span lang="no">6 mnd</span><span lang="en">6 mo</span></button>
+          <button type="button" data-period="12month"><span lang="no">12 mnd</span><span lang="en">12 mo</span></button>
         </div>
 
         <div class="music-cols">
           <div>
-            <h3>Album</h3>
+            <h3><span lang="no">Album</span><span lang="en">Albums</span></h3>
             <ol class="music-list" id="music-albums"></ol>
           </div>
           <div>
-            <h3>Sanger</h3>
+            <h3><span lang="no">Sanger</span><span lang="en">Tracks</span></h3>
             <ol class="music-list" id="music-tracks"></ol>
           </div>
         </div>
@@ -242,26 +308,37 @@
         <img
           class="split-photo split-photo--full"
           src="img/militaeret.jpeg"
-          alt="Vaktlaget på truger mot Gaustatoppen"
+          alt="Vaktlaget på truger mot Gaustatoppen" data-en-alt="The guard unit on snowshoes heading for Gaustatoppen"
           width="3024"
           height="4032"
           loading="lazy"
           onerror="handleMediaError(this)"
         />
-        <figcaption>Vaktlaget på vei mot Gaustatoppen</figcaption>
+        <figcaption><span lang="no">Vaktlaget på vei mot Gaustatoppen</span><span lang="en">The guard unit on the way to Gaustatoppen</span></figcaption>
       </figure>
       <div class="split-text">
-        <h2>Motstand</h2>
-        <p>Planen min var å gå rett fra videregående til studier. Jeg hadde allerede fått studieplass, så jeg ble ganske overrasket 
+        <h2><span lang="no">Motstand</span><span lang="en">Hardship</span></h2>
+        <p lang="no">Planen min var å gå rett fra videregående til studier. Jeg hadde allerede fått studieplass, så jeg ble ganske overrasket 
           da jeg på sesjon fikk beskjed om at jeg skulle inn i militæret. Jeg endte opp som vaktsoldat, og er nå veldig takknemlig 
           for tiden min der. Jeg lærte å leve tett på andre og løse oppgaver som et lag, og det er derfor jeg ikke er redd for å ta 
           initiativ når jeg jobber sammen med andre i dag.
         </p>
-        <p>Jeg lærte også å takle motstand, og å like det. Å stå opp før solen og tre ned i feltstøvler som er
+        <p lang="en">My plan was to go straight from upper secondary school to university. I had already been accepted, so I was pretty surprised
+          when I was told at the military assessment that I'd be doing my service. I ended up as a guard soldier, and I'm now very grateful
+          for my time there. I learned to live in close quarters with others and to solve tasks as a team, and that's why I'm not afraid to take
+          the initiative when I work with others today.
+        </p>
+        <p lang="no">Jeg lærte også å takle motstand, og å like det. Å stå opp før solen og tre ned i feltstøvler som er
           gjennomfrosne og stive av en iskald natt. Å være femten timer inn i en marsj uten å ha spist, og vite at man bare er halvveis.
           I de øyeblikkene hvor det føles som at man er i etasjen under kjelleren. Da er det ikke noe annet å gjøre enn å ta ett skritt 
           av gangen til man er i mål. Den samme tankegangen tar jeg med meg inn i vanskelige kodeoppgaver eller systemer: jeg mister ikke 
           motivasjonen av at noe er tungt. 
+        </p>
+        <p lang="en">I also learned to handle hardship, and to like it. Getting up before the sun and stepping into field boots that are
+          frozen through and stiff after an ice-cold night. Being fifteen hours into a march without having eaten, and knowing you're only halfway.
+          Those moments when it feels like you're on the floor below the basement. Then there's nothing else to do but take one step
+          at a time until you reach the finish. I bring that same mindset into difficult coding problems and systems: I don't lose
+          motivation just because something is hard.
         </p>
       </div>
     </section>
@@ -269,30 +346,38 @@
     <!-- 6. FRILUFTSLIV: tekst venstre, bilde høyre -->
     <section class="split split--reverse reveal">
       <div class="split-text">
-        <h2>Ro</h2>
-        <p>For meg er fjellturer meditasjon. Jeg kommer meg vekk fra støy og tidsfrister, legger tankene igjen hjemme og
+        <h2><span lang="no">Ro</span><span lang="en">Calm</span></h2>
+        <p lang="no">For meg er fjellturer meditasjon. Jeg kommer meg vekk fra støy og tidsfrister, legger tankene igjen hjemme og
           lar turen tenke for meg. Når landskapet åpner seg, skjønner jeg hvor klaustrofobisk jeg egentlig føler meg i byen, 
           og da er det godt å vite at det finnes et åpent sted jeg kan gå til.
         </p>
-        <p>Motstanden er med her også. Står man nederst og ser opp mot det høyeste punktet, kjenner man på en slags
+        <p lang="en">For me, mountain hikes are meditation. I get away from noise and deadlines, leave my thoughts at home and
+          let the hike do the thinking for me. When the landscape opens up, I realise how claustrophobic I actually feel in the city,
+          and it's good to know there's an open place I can go to.
+        </p>
+        <p lang="no">Motstanden er med her også. Står man nederst og ser opp mot det høyeste punktet, kjenner man på en slags
           ærefrykt. Klarer man å komme seg opp til toppen, så utvider man horisonten litt.
+        </p>
+        <p lang="en">Hardship is part of this too. Standing at the bottom looking up at the highest point, you feel a kind of
+          awe. If you manage to make it to the top, your horizon gets a little wider.
         </p>
       </div>
       <figure class="split-media">
         <img
           class="split-photo split-photo--full"
           src="img/besseggen.jpeg"
-          alt="Silhuett av en fjellvandrer på Besseggen"
+          alt="Silhuett av en fjellvandrer på Besseggen" data-en-alt="Silhouette of a hiker on Besseggen"
           width="1536"
           height="2048"
           loading="lazy"
           onerror="handleMediaError(this)"
         />
-        <figcaption>På Besseggen</figcaption>
+        <figcaption><span lang="no">På Besseggen</span><span lang="en">On Besseggen</span></figcaption>
       </figure>
     </section>
 
-    <p class="contact-line">Vil du snakke om et prosjekt, en bok eller en film? Send meg en e-post: <a href="mailto:fredrikudengen@proton.me">fredrikudengen@proton.me</a></p>
+    <p class="contact-line" lang="no">Vil du snakke om et prosjekt, en bok eller en film? Send meg en e-post: <a href="mailto:fredrikudengen@proton.me">fredrikudengen@proton.me</a></p>
+    <p class="contact-line" lang="en">Want to talk about a project, a book or a film? Send me an email: <a href="mailto:fredrikudengen@proton.me">fredrikudengen@proton.me</a></p>
   </main>
  
   <footer class="footer">

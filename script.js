@@ -30,7 +30,7 @@
   var button = document.createElement("button");
   button.type = "button";
   button.className = "to-top";
-  button.innerHTML = '<span aria-hidden="true">↑</span> Til toppen';
+  button.innerHTML = '<span aria-hidden="true">↑</span> <span lang="no">Til toppen</span><span lang="en">Back to top</span>';
   document.body.appendChild(button);
 
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
