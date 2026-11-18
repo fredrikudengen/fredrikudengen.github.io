@@ -955,3 +955,93 @@ figure figcaption {
     grid-column: 2;
   }
 }
+
+/* Filmstatistikk */
+.film-stats {
+  margin-top: 56px;
+}
+.film-stats > h2 {
+  margin: 0 0 4px;
+}
+.stat-tiles {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin: 22px 0 34px;
+}
+.stat-tile {
+  padding: 14px 16px;
+  border: 1px solid var(--rule);
+}
+.stat-tile dd {
+  margin: 0;
+  color: var(--accent);
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+  line-height: 1.1;
+}
+.stat-tile dt {
+  margin-top: 4px;
+  color: var(--ink-soft);
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
+}
+.stat-charts {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px 40px;
+}
+.stat-chart {
+  margin: 0;
+}
+.stat-chart figcaption {
+  margin-bottom: 12px;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 1.05rem;
+}
+.bars {
+  display: flex;
+  align-items: stretch;
+  gap: 6px;
+  height: 180px;
+  margin-bottom: 26px;
+  border-bottom: 1px solid var(--rule);
+}
+.bar-col {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  min-width: 0;
+}
+.bar {
+  display: block;
+  width: 100%;
+  background: var(--accent-soft);
+  transition: background 0.15s;
+}
+.bar-col:hover .bar {
+  background: var(--accent);
+}
+.bar-value,
+.bar-label {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.68rem;
+  color: var(--ink-soft);
+}
+.bar-value {
+  margin-bottom: 3px;
+}
+.bar-label {
+  position: absolute;
+  top: 100%;
+  margin-top: 6px;
+}
+
+@media (max-width: 700px) {
+  .stat-tiles { grid-template-columns: repeat(2, 1fr); }
+  .stat-charts { grid-template-columns: 1fr; }
+}

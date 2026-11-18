@@ -210,3 +210,5 @@ __marimo__/
 # Node
 frontend/node_modules/
 frontend/dist/
+# Rå Letterboxd-eksport (build_stats.py lager resources/stats.json)
+letterboxd/

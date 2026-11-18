@@ -1,0 +1,133 @@
+{
+  "generated": "2026-11-18",
+  "totals": {
+    "watched": 575,
+    "rated": 495,
+    "average": 4.1,
+    "five_star": 89,
+    "diary_entries": 403,
+    "rewatches": 85
+  },
+  "per_year": [
+    {
+      "year": 2021,
+      "count": 12,
+      "rewatches": 1,
+      "average": 4.38
+    },
+    {
+      "year": 2022,
+      "count": 49,
+      "rewatches": 7,
+      "average": 4.47
+    },
+    {
+      "year": 2023,
+      "count": 55,
+      "rewatches": 14,
+      "average": 4.5
+    },
+    {
+      "year": 2024,
+      "count": 119,
+      "rewatches": 24,
+      "average": 4.14
+    },
+    {
+      "year": 2025,
+      "count": 90,
+      "rewatches": 26,
+      "average": 4.24
+    },
+    {
+      "year": 2026,
+      "count": 78,
+      "rewatches": 13,
+      "average": 4.16
+    }
+  ],
+  "ratings": [
+    {
+      "rating": 0.5,
+      "count": 0
+    },
+    {
+      "rating": 1.0,
+      "count": 3
+    },
+    {
+      "rating": 1.5,
+      "count": 4
+    },
+    {
+      "rating": 2.0,
+      "count": 3
+    },
+    {
+      "rating": 2.5,
+      "count": 3
+    },
+    {
+      "rating": 3.0,
+      "count": 32
+    },
+    {
+      "rating": 3.5,
+      "count": 84
+    },
+    {
+      "rating": 4.0,
+      "count": 148
+    },
+    {
+      "rating": 4.5,
+      "count": 129
+    },
+    {
+      "rating": 5.0,
+      "count": 89
+    }
+  ],
+  "decades": [
+    {
+      "decade": 1930,
+      "count": 1
+    },
+    {
+      "decade": 1940,
+      "count": 3
+    },
+    {
+      "decade": 1950,
+      "count": 7
+    },
+    {
+      "decade": 1960,
+      "count": 8
+    },
+    {
+      "decade": 1970,
+      "count": 24
+    },
+    {
+      "decade": 1980,
+      "count": 31
+    },
+    {
+      "decade": 1990,
+      "count": 51
+    },
+    {
+      "decade": 2000,
+      "count": 125
+    },
+    {
+      "decade": 2010,
+      "count": 202
+    },
+    {
+      "decade": 2020,
+      "count": 123
+    }
+  ]
+}

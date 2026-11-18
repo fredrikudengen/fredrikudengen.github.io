@@ -35,6 +35,14 @@
 
   <main class="content">
     <section class="review-grid" id="review-grid"></section>
+
+    <section class="film-stats" id="film-stats" aria-labelledby="film-stats-title" hidden>
+      <h2 id="film-stats-title"><span lang="no">Alle filmene jeg har sett</span><span lang="en">Every film I've watched</span></h2>
+      <p class="subtitle" lang="no">Anmeldelsene over er bare filmene jeg har mange tanker om. Her er tall fra alt jeg har sett.</p>
+      <p class="subtitle" lang="en">The reviews above are only the films I have a lot to say about. These numbers cover everything I've seen.</p>
+      <dl class="stat-tiles" id="stat-tiles"></dl>
+      <div class="stat-charts" id="stat-charts"></div>
+    </section>
   </main>
 
   <footer class="footer">
@@ -103,6 +111,7 @@
           '<p lang="no">Kunne ikke laste anmeldelser.</p><p lang="en">Could not load reviews.</p>';
       });
   </script>
+  <script src="stats.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
