@@ -32,6 +32,28 @@ def avg(values):
     return round(sum(values) / len(values), 2) if values else None
 
 
+def norm(title):
+    return "".join(c for c in title.lower() if c.isalnum())
+
+
+def review_index():
+    """Kobler Letterboxd-filmer til egne anmeldelser i meta.json.
+
+    Treff på Letterboxd-lenken hvis oppføringen har feltet "letterboxd" (boxd.it-lenke),
+    ellers på tittel + år (aar). Gir {uri | (tittel, år): slug}.
+    """
+    with open(os.path.join(SITE_ROOT, "resources", "meta.json"), encoding="utf-8") as f:
+        movies = json.load(f).get("movies", {})
+    index = {}
+    for slug, entry in movies.items():
+        if entry.get("letterboxd"):
+            index[entry["letterboxd"]] = slug
+        year = str(entry.get("aar", ""))
+        if year.isdigit():
+            index[(norm(entry["title"]), year)] = slug
+    return index
+
+
 def main():
     diary, ratings, watched = read("diary.csv"), read("ratings.csv"), read("watched.csv")
 
@@ -47,6 +69,20 @@ def main():
     rating_values = [float(r["Rating"]) for r in ratings if r["Rating"]]
     distribution = Counter(rating_values)
     decades = Counter(int(w["Year"]) // 10 * 10 for w in watched if w["Year"])
+
+    reviews = review_index()
+    my_rating = {r["Letterboxd URI"]: float(r["Rating"]) for r in ratings if r["Rating"]}
+
+    def film(row, **extra):
+        uri = row["Letterboxd URI"]
+        item = {"t": row["Name"], "y": int(row["Year"]) if row["Year"] else None, "u": uri}
+        if uri in my_rating:
+            item["r"] = my_rating[uri]
+        slug = reviews.get(uri) or reviews.get((norm(row["Name"]), row["Year"]))
+        if slug:
+            item["s"] = slug
+        item.update(extra)
+        return item
 
     stats = {
         "generated": date.today().isoformat(),
@@ -71,6 +107,18 @@ def main():
             {"rating": r / 2, "count": distribution.get(r / 2, 0)} for r in range(1, 11)
         ],
         "decades": [{"decade": d, "count": c} for d, c in sorted(decades.items())],
+        # Filmlistene bak diagrammene. Dagboken har dato og omsett-flagg, de andre har
+        # bare den nåværende karakteren din.
+        "diary": [
+            film(
+                row,
+                d=row["Watched Date"],
+                r=float(row["Rating"]) if row["Rating"] else None,
+                rw=1 if row["Rewatch"] else 0,
+            )
+            for row in diary
+        ],
+        "films": [film(row) for row in watched],
     }
 
     with open(OUT, "w", encoding="utf-8") as f:
