@@ -6,12 +6,14 @@ Bruk:
     python3 add_review.py "/path/til/Tittel.md" film
     python3 add_review.py "/path/til/Tittel.md" bok en   (engelsk oversettelse)
 
-Gjør fire ting, uten å røre eksisterende innhold:
+Gjør fem ting, uten å røre eksisterende innhold:
   1. Konverterer .md -> resources/<books|movies>/<slug>.html
   2. Lager boker/<slug>.html eller filmer/<slug>.html (sidemal)
   3. Setter inn et nytt kort i boker.html / filmer.html (alfabetisk)
   4. Legger til en tom oppføring i resources/meta.json for slugen
      (overskriver ikke eksisterende oppføringer)
+  5. Oppdaterer feed.xml (RSS). Innlegg uten "dato" i meta.json tas ikke med,
+     så fyll inn datoen og kjør `python3 build_feed.py` på nytt.
 
 Med "en" til slutt skrives bare resources/<books|movies>/<slug>.en.html, som
 anmeldelsessiden viser når engelsk er valgt. Filnavnet må gi samme slug som den
@@ -21,6 +23,8 @@ import json
 import os
 import re
 import sys
+
+import build_feed
 
 SITE_ROOT = os.path.dirname(os.path.abspath(__file__))
 
@@ -109,6 +113,7 @@ def convert_markdown(src_text):
 
 NAV = """      <nav class="nav">
         <a href="../projects.html"><span lang="no">Prosjekter</span><span lang="en">Projects</span></a>
+        <a href="../skrevet.html"><span lang="no">Skrevet</span><span lang="en">Written</span></a>
         <a href="../boker.html"><span lang="no">Bøker</span><span lang="en">Books</span></a>
         <a href="../filmer.html"><span lang="no">Filmer</span><span lang="en">Films</span></a>
         <a href="https://www.linkedin.com/in/fredrik-udengen-87272a143/" target="_blank" rel="noopener">LinkedIn</a>
@@ -125,6 +130,7 @@ REVIEW_PAGE = """<!DOCTYPE html>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../style.css" />
+  <link rel="alternate" type="application/rss+xml" title="Fredrik Udengen" href="../feed.xml" />
   <meta name="description" content="Anmeldelse av {title_attr} · Fredrik Udengen" />
   <script src="../lang.js"></script>
 </head>
@@ -238,6 +244,8 @@ def main():
     update_meta(meta_path, cfg["meta_key"], cfg["meta_fields"], slug, title)
     print(f"Oppdaterte {meta_path}")
     print(f"{cfg['listing_file']} henter listen direkte fra meta.json, ingen videre endring nødvendig der.")
+
+    build_feed.main()
 
     print(f"\nFerdig! Fyll gjerne inn {', '.join(cfg['meta_fields'])} for '{slug}' i resources/meta.json.")
 

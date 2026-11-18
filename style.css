@@ -901,3 +901,57 @@ figure figcaption {
 @media (prefers-reduced-motion: reduce) {
   .music-cols, .music-periods button { transition: none; }
 }
+
+/* Skrevet-tidslinje */
+.feed-link {
+  margin: 0;
+  color: var(--ink-soft);
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.78rem;
+}
+
+.timeline-year {
+  margin: 0 0 32px;
+}
+.timeline-year h2 {
+  margin: 0 0 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--rule);
+}
+.timeline-year ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.timeline-item,
+.timeline-item:visited {
+  display: grid;
+  grid-template-columns: 4rem 1fr auto;
+  gap: 4px 16px;
+  align-items: baseline;
+  padding: 10px 0;
+  color: inherit;
+  text-decoration: none;
+}
+.timeline-item:hover .timeline-title {
+  color: var(--accent);
+}
+.timeline-date,
+.timeline-kind {
+  color: var(--accent);
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.78rem;
+}
+.timeline-title {
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 1.15rem;
+}
+
+@media (max-width: 600px) {
+  .timeline-item {
+    grid-template-columns: 3.5rem 1fr;
+  }
+  .timeline-kind {
+    grid-column: 2;
+  }
+}

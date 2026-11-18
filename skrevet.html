@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="no" data-en-title="Written · Fredrik Udengen">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skrevet · Fredrik Udengen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="alternate" type="application/rss+xml" title="Fredrik Udengen" href="feed.xml" />
+  <meta name="description" content="Alt jeg har skrevet, i kronologisk rekkefølge · Fredrik Udengen" />
+  <script src="lang.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="topbar">
+      <a class="brand" href="index.html">Fredrik Udengen</a>
+      <nav class="nav">
+        <a href="index.html"><span lang="no">Om meg</span><span lang="en">About me</span></a>
+        <a href="projects.html"><span lang="no">Prosjekter</span><span lang="en">Projects</span></a>
+        <a href="boker.html"><span lang="no">Bøker</span><span lang="en">Books</span></a>
+        <a href="filmer.html"><span lang="no">Filmer</span><span lang="en">Films</span></a>
+        <a href="https://www.linkedin.com/in/fredrik-udengen-87272a143/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:fredrikudengen@proton.me"><span lang="no">Kontakt</span><span lang="en">Contact</span></a>
+      </nav>
+    </div>
+
+    <section class="page-hero reveal">
+      <h1><span lang="no">Skrevet</span><span lang="en">Written</span></h1>
+      <p class="subtitle" lang="no">Alt jeg har skrevet, nyeste først.</p>
+      <p class="subtitle" lang="en">Everything I've written, newest first.</p>
+      <p class="feed-link">
+        <a href="feed.xml">RSS</a>
+        <span lang="no">· legg adressen til feeden i en feed-leser for å følge med</span>
+        <span lang="en">· add the feed address to a feed reader to follow along</span>
+      </p>
+    </section>
+  </header>
+
+  <main class="content">
+    <div class="timeline" id="timeline"></div>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Fredrik Udengen</p>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    function parseDato(s) {
+      var p = (s || "").split(".");
+      if (p.length !== 3) return null;
+      var d = parseInt(p[0], 10), m = parseInt(p[1], 10), y = parseInt(p[2], 10);
+      return d && m && y ? { d: d, m: m, y: y, key: y * 10000 + m * 100 + d } : null;
+    }
+
+    var KINDS = [
+      { key: "books", dir: "boker", no: "Bok", en: "Book", by: "forfatter" },
+      { key: "movies", dir: "filmer", no: "Film", en: "Film", by: "regissor" },
+    ];
+
+    fetch("resources/meta.json")
+      .then(function (r) { return r.json(); })
+      .then(function (meta) {
+        var items = [];
+        KINDS.forEach(function (kind) {
+          var group = meta[kind.key] || {};
+          Object.keys(group).forEach(function (slug) {
+            var e = group[slug];
+            var date = parseDato(e.dato);
+            if (!date) return;
+            items.push({ kind: kind, slug: slug, entry: e, date: date });
+          });
+        });
+        items.sort(function (a, b) { return b.date.key - a.date.key; });
+
+        var root = document.getElementById("timeline");
+        var year = null, list = null;
+        items.forEach(function (it) {
+          if (it.date.y !== year) {
+            year = it.date.y;
+            var section = document.createElement("section");
+            section.className = "timeline-year";
+            var h2 = document.createElement("h2");
+            h2.textContent = year;
+            list = document.createElement("ul");
+            section.appendChild(h2);
+            section.appendChild(list);
+            root.appendChild(section);
+          }
+          var li = document.createElement("li");
+          var a = document.createElement("a");
+          a.className = "timeline-item";
+          a.href = it.kind.dir + "/" + it.slug + ".html";
+
+          var time = document.createElement("span");
+          time.className = "timeline-date";
+          time.textContent = (it.date.d < 10 ? "0" : "") + it.date.d + "." + (it.date.m < 10 ? "0" : "") + it.date.m;
+
+          var title = document.createElement("span");
+          title.className = "timeline-title";
+          title.textContent = it.entry.title;
+
+          var kindEl = document.createElement("span");
+          kindEl.className = "timeline-kind";
+          kindEl.appendChild(siteLang.text(it.kind.no, it.kind.en));
+          var by = it.entry[it.kind.by];
+          if (by) kindEl.appendChild(document.createTextNode(" · " + by));
+
+          a.appendChild(time);
+          a.appendChild(title);
+          a.appendChild(kindEl);
+          li.appendChild(a);
+          list.appendChild(li);
+        });
+
+        if (!items.length) {
+          root.appendChild(siteLang.text("Ingenting her ennå.", "Nothing here yet."));
+        }
+      })
+      .catch(function () {
+        document.getElementById("timeline").innerHTML =
+          '<p lang="no">Kunne ikke laste listen.</p><p lang="en">Could not load the list.</p>';
+      });
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>

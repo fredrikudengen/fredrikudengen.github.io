@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+<title>Fredrik Udengen</title>
+<link>https://fredrikudengen.github.io/skrevet.html</link>
+<description>Bok- og filmanmeldelser av Fredrik Udengen</description>
+<language>no</language>
+<atom:link href="https://fredrikudengen.github.io/feed.xml" rel="self" type="application/rss+xml" />
+<lastBuildDate>Sun, 04 Oct 2026 12:00:00 +0000</lastBuildDate>
+<item>
+<title>Film: Digger (Alejandro Iñárritu)</title>
+<link>https://fredrikudengen.github.io/filmer/digger.html</link>
+<guid isPermaLink="true">https://fredrikudengen.github.io/filmer/digger.html</guid>
+<pubDate>Sun, 04 Oct 2026 12:00:00 +0000</pubDate>
+<description>Digger, en oljebaron av den gode gamle amerikanske typen vi alle elsker, og hans gjeng av rike, hvite, eldre menn i maktposisjoner mot yngre, nerdete forskere i en kamp om verden. Ikke noe nytt her, ikke noe dypere. Teatralsk overdrevne…</description>
+</item>
+<item>
+<title>Film: The Brutalist (Brady Corbet)</title>
+<link>https://fredrikudengen.github.io/filmer/the-brutalist.html</link>
+<guid isPermaLink="true">https://fredrikudengen.github.io/filmer/the-brutalist.html</guid>
+<pubDate>Thu, 06 Mar 2025 12:00:00 +0000</pubDate>
+<description>The Brutalist er et utrolig storlangent og komplekst epos. Jeg ble litt redd når jeg så spilletiden først, men alle poengene og temaene den tar opp og ikke minst fortellingen den prøver å formidle, rettferdiggjør tiden. Det er få ganger…</description>
+</item>
+<item>
+<title>Bok: Meditations (Marcus Aurelius)</title>
+<link>https://fredrikudengen.github.io/boker/meditations.html</link>
+<guid isPermaLink="true">https://fredrikudengen.github.io/boker/meditations.html</guid>
+<pubDate>Sat, 22 Jun 2024 12:00:00 +0000</pubDate>
+<description>Dette var en veldig tankevekkende bok og det likte jeg. Prosaen og formatet er veldig lagt opp til at man skal tenke og reflektere selv: korte avsnitt eller setninger med metaforiske bilder. Jeg tror det er en bok man kan lese flere…</description>
+</item>
+</channel>
+</rss>
