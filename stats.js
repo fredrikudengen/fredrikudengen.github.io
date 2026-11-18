@@ -40,11 +40,8 @@
     var li = document.createElement("li");
     li.className = "film-item";
 
-    var title = document.createElement("a");
+    var title = document.createElement("span");
     title.className = "film-title";
-    title.href = f.u;
-    title.target = "_blank";
-    title.rel = "noopener";
     title.textContent = f.t;
     li.appendChild(title);
 
@@ -54,7 +51,7 @@
     if (f.y) bits.push(f.y);
     if (showDate && f.d) bits.push(f.d.split("-").reverse().join("."));
     if (f.r != null) bits.push("★ " + fmt(f.r, f.r % 1 ? 1 : 0));
-    if (f.rw) bits.push(siteLang.get() === "en" ? "rewatch" : "omsett");
+    if (f.rw) bits.push(siteLang.get() === "en" ? "rewatch" : "sett på nytt");
     meta.textContent = bits.join(" · ");
     li.appendChild(meta);
 

@@ -11,6 +11,8 @@ Kilder:
                   filmer lagt inn samme dag da kontoen ble satt opp.
   ratings.csv  -> karakterfordeling og snittkarakter totalt
   watched.csv  -> antall sette filmer og fordeling på tiår
+
+Etter første import holdes stats.json oppdatert av update_letterboxd.py (RSS).
 """
 import csv
 import json
@@ -54,45 +56,32 @@ def review_index():
     return index
 
 
-def main():
-    diary, ratings, watched = read("diary.csv"), read("ratings.csv"), read("watched.csv")
+def compute_stats(films, diary):
+    """Regner ut alt siden viser fra filmlisten og dagboken (ingen CSV nødvendig).
 
+    films: [{t, y, u, r?, s?}], diary: [{t, y, u, d, r, rw, s?}]
+    """
     per_year = defaultdict(lambda: {"count": 0, "rewatches": 0, "ratings": []})
     for row in diary:
-        year = row["Watched Date"][:4]
-        entry = per_year[year]
+        entry = per_year[row["d"][:4]]
         entry["count"] += 1
-        entry["rewatches"] += 1 if row["Rewatch"] else 0
-        if row["Rating"]:
-            entry["ratings"].append(float(row["Rating"]))
+        entry["rewatches"] += row["rw"]
+        if row["r"] is not None:
+            entry["ratings"].append(row["r"])
 
-    rating_values = [float(r["Rating"]) for r in ratings if r["Rating"]]
+    rating_values = [f["r"] for f in films if f.get("r") is not None]
     distribution = Counter(rating_values)
-    decades = Counter(int(w["Year"]) // 10 * 10 for w in watched if w["Year"])
+    decades = Counter(f["y"] // 10 * 10 for f in films if f["y"])
 
-    reviews = review_index()
-    my_rating = {r["Letterboxd URI"]: float(r["Rating"]) for r in ratings if r["Rating"]}
-
-    def film(row, **extra):
-        uri = row["Letterboxd URI"]
-        item = {"t": row["Name"], "y": int(row["Year"]) if row["Year"] else None, "u": uri}
-        if uri in my_rating:
-            item["r"] = my_rating[uri]
-        slug = reviews.get(uri) or reviews.get((norm(row["Name"]), row["Year"]))
-        if slug:
-            item["s"] = slug
-        item.update(extra)
-        return item
-
-    stats = {
+    return {
         "generated": date.today().isoformat(),
         "totals": {
-            "watched": len(watched),
+            "watched": len(films),
             "rated": len(rating_values),
             "average": avg(rating_values),
             "five_star": distribution.get(5.0, 0),
             "diary_entries": len(diary),
-            "rewatches": sum(1 for r in diary if r["Rewatch"]),
+            "rewatches": sum(row["rw"] for row in diary),
         },
         "per_year": [
             {
@@ -109,21 +98,44 @@ def main():
         "decades": [{"decade": d, "count": c} for d, c in sorted(decades.items())],
         # Filmlistene bak diagrammene. Dagboken har dato og omsett-flagg, de andre har
         # bare den nåværende karakteren din.
-        "diary": [
-            film(
-                row,
-                d=row["Watched Date"],
-                r=float(row["Rating"]) if row["Rating"] else None,
-                rw=1 if row["Rewatch"] else 0,
-            )
-            for row in diary
-        ],
-        "films": [film(row) for row in watched],
+        "diary": diary,
+        "films": films,
     }
 
+
+def write_stats(stats):
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(stats, f, ensure_ascii=False, indent=2)
         f.write("\n")
+
+
+def main():
+    diary_rows, ratings, watched = read("diary.csv"), read("ratings.csv"), read("watched.csv")
+
+    reviews = review_index()
+    my_rating = {r["Letterboxd URI"]: float(r["Rating"]) for r in ratings if r["Rating"]}
+
+    def film(row, **extra):
+        uri = row["Letterboxd URI"]
+        item = {"t": row["Name"], "y": int(row["Year"]) if row["Year"] else None, "u": uri}
+        if uri in my_rating:
+            item["r"] = my_rating[uri]
+        slug = reviews.get(uri) or reviews.get((norm(row["Name"]), row["Year"]))
+        if slug:
+            item["s"] = slug
+        item.update(extra)
+        return item
+
+    diary = [
+        film(
+            row,
+            d=row["Watched Date"],
+            r=float(row["Rating"]) if row["Rating"] else None,
+            rw=1 if row["Rewatch"] else 0,
+        )
+        for row in diary_rows
+    ]
+    write_stats(compute_stats([film(row) for row in watched], diary))
     print(f"Skrev {OUT}")
 
 

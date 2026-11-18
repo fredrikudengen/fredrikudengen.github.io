@@ -1,0 +1,40 @@
+name: Oppdater Letterboxd-statistikk
+
+on:
+  schedule:
+    - cron: "0 5 * * 1" # hver mandag kl. 05:00 UTC
+  workflow_dispatch: # kan også kjøres for hånd fra Actions-fanen
+
+permissions:
+  contents: write
+
+concurrency:
+  group: letterboxd
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Hent RSS og oppdater stats.json
+        env:
+          LETTERBOXD_USER: ${{ vars.LETTERBOXD_USER }}
+        run: python3 update_letterboxd.py
+
+      - name: Commit hvis noe er endret
+        run: |
+          if git diff --quiet -- resources/stats.json; then
+            echo "Ingen endringer."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add resources/stats.json
+          git commit -m "Oppdater Letterboxd-statistikk"
+          git push
