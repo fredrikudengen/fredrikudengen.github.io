@@ -12,7 +12,6 @@ GitHub Action (.github/workflows/letterboxd.yml) kjører dette jevnlig.
 """
 import json
 import os
-import re
 import sys
 import urllib.request
 import xml.etree.ElementTree as ET
@@ -47,12 +46,9 @@ def parse_feed(xml_bytes):
             continue
         year = item.findtext("lb:filmYear", namespaces=NS)
         rating = item.findtext("lb:memberRating", namespaces=NS)
-        link = item.findtext("link") or ""
-        slug = re.search(r"/film/([^/]+)/", link)
         entries.append({
             "t": title,
             "y": int(year) if year else None,
-            "u": f"https://letterboxd.com/film/{slug.group(1)}/" if slug else link,
             "d": watched,
             "r": float(rating) if rating else None,
             "rw": 1 if (item.findtext("lb:rewatch", namespaces=NS) or "").lower() == "yes" else 0,
@@ -76,7 +72,7 @@ def merge(stats, entries):
             seen.add((*key, e["d"]))
         film = by_film.get(key)
         if film is None:
-            film = {"t": e["t"], "y": e["y"], "u": e["u"]}
+            film = {"t": e["t"], "y": e["y"]}
             films.append(film)
             by_film[key] = film
         if e["r"] is not None:
@@ -87,7 +83,7 @@ def refresh_reviews(stats):
     """Setter «Min anmeldelse»-lenke på filmer du har skrevet om i meta.json."""
     reviews = build_stats.review_index()
     for item in stats["films"] + stats["diary"]:
-        slug = reviews.get(item["u"]) or reviews.get((build_stats.norm(item["t"]), str(item["y"])))
+        slug = reviews.get((build_stats.norm(item["t"]), str(item["y"])))
         if slug:
             item["s"] = slug
         else:

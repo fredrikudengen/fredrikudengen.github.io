@@ -41,18 +41,17 @@ def norm(title):
 def review_index():
     """Kobler Letterboxd-filmer til egne anmeldelser i meta.json.
 
-    Treff på Letterboxd-lenken hvis oppføringen har feltet "letterboxd" (boxd.it-lenke),
-    ellers på tittel + år (aar). Gir {uri | (tittel, år): slug}.
+    Treffer på tittel + år (aar). Heter filmen noe annet på Letterboxd, eller har et annet
+    år der, legg til "letterboxd_tittel" og/eller "letterboxd_aar" i oppføringen.
+    Gir {(normalisert tittel, år): slug}.
     """
     with open(os.path.join(SITE_ROOT, "resources", "meta.json"), encoding="utf-8") as f:
         movies = json.load(f).get("movies", {})
     index = {}
     for slug, entry in movies.items():
-        if entry.get("letterboxd"):
-            index[entry["letterboxd"]] = slug
-        year = str(entry.get("aar", ""))
+        year = str(entry.get("letterboxd_aar", entry.get("aar", "")))
         if year.isdigit():
-            index[(norm(entry["title"]), year)] = slug
+            index[(norm(entry.get("letterboxd_tittel", entry["title"])), year)] = slug
     return index
 
 
@@ -117,10 +116,10 @@ def main():
 
     def film(row, **extra):
         uri = row["Letterboxd URI"]
-        item = {"t": row["Name"], "y": int(row["Year"]) if row["Year"] else None, "u": uri}
+        item = {"t": row["Name"], "y": int(row["Year"]) if row["Year"] else None}
         if uri in my_rating:
             item["r"] = my_rating[uri]
-        slug = reviews.get(uri) or reviews.get((norm(row["Name"]), row["Year"]))
+        slug = reviews.get((norm(row["Name"]), row["Year"]))
         if slug:
             item["s"] = slug
         item.update(extra)
