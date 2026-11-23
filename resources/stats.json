@@ -1,11 +1,11 @@
 {
-  "generated": "2026-11-18",
+  "generated": "2026-11-23",
   "totals": {
-    "watched": 575,
-    "rated": 495,
+    "watched": 576,
+    "rated": 496,
     "average": 4.1,
-    "five_star": 89,
-    "diary_entries": 403,
+    "five_star": 90,
+    "diary_entries": 404,
     "rewatches": 85
   },
   "per_year": [
@@ -41,9 +41,9 @@
     },
     {
       "year": 2026,
-      "count": 78,
+      "count": 79,
       "rewatches": 13,
-      "average": 4.16
+      "average": 4.17
     }
   ],
   "ratings": [
@@ -85,7 +85,7 @@
     },
     {
       "rating": 5.0,
-      "count": 89
+      "count": 90
     }
   ],
   "decades": [
@@ -127,7 +127,7 @@
     },
     {
       "decade": 2020,
-      "count": 123
+      "count": 124
     }
   ],
   "diary": [
@@ -2953,6 +2953,13 @@
       "d": "2026-11-12",
       "r": 5.0,
       "rw": 0
+    },
+    {
+      "t": "You Can See Everything",
+      "y": 2026,
+      "d": "2026-11-20",
+      "r": 5.0,
+      "rw": 0
     }
   ],
   "films": [
@@ -5751,6 +5758,11 @@
     {
       "t": "Double Indemnity",
       "y": 1944,
+      "r": 5.0
+    },
+    {
+      "t": "You Can See Everything",
+      "y": 2026,
       "r": 5.0
     }
   ]
